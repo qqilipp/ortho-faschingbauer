@@ -189,6 +189,8 @@ $profile_btn  = $is_en ? 'Book an appointment' : 'Termin vereinbaren';
           </a>
         </div>
 
+        <?php get_template_part('parts/service/reviews'); ?>
+
       </aside>
 
     </div>
