@@ -1,0 +1,32 @@
+.acf-flexible-content .layout {
+    border: 1px solid #2271b1 !important;
+}
+
+/*
+.acf-flexible-content .layout .acf-fc-layout-handle {
+	background: #2271b1;
+	border-bottom: 1px solid #2271b1 !important; 
+	color: #fff !important;
+}
+*/
+
+#your-profile h2,
+#your-profile #application-passwords-section,
+#your-profile tr.user-rich-editing-wrap,
+#your-profile tr.user-syntax-highlighting-wrap,
+#your-profile tr.user-admin-color-wrap,
+#your-profile tr.user-comment-shortcuts-wrap,
+#your-profile tr.show-admin-bar,
+#your-profile tr.user-language-wrap,
+#your-profile tr.user-url-wrap,
+#your-profile tr.user-description-wrap,
+#your-profile tr.user-profile-picture,
+#your-profile tr.user-sessions-wrap,
+tr.site-icon-section {
+	display: none;
+}
+
+.media-modal [data-setting="caption"],
+.media-modal [data-setting="description"] {
+	display: none !important;
+}

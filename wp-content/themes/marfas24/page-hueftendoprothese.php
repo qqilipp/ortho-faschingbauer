@@ -1,0 +1,1524 @@
+<?php
+/*
+Template Name: Hueftendoprothese Landing
+*/
+
+/* $lp_form_recipient = get_option('admin_email'); */ 
+// Test recipient. Replace with the client's email after testing.
+$lp_form_recipient = 'praxis@ortho-faschingbauer.at';
+$lp_form_status = '';
+$lp_form_message = '';
+
+if (isset($_GET['lp_sent']) && $_GET['lp_sent'] === '1') {
+  $lp_form_status = 'success';
+  $lp_form_message = 'Vielen Dank. Ihre Anfrage wurde gesendet.';
+} elseif (isset($_GET['lp_error']) && $_GET['lp_error'] === '1') {
+  $lp_form_status = 'error';
+  $lp_form_message = 'Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.';
+}
+
+if (
+  $_SERVER['REQUEST_METHOD'] === 'POST'
+  && isset($_POST['lp_form_action'])
+  && $_POST['lp_form_action'] === 'lp_huefte_contact'
+) {
+  $lp_vorname = isset($_POST['lp_vorname']) ? sanitize_text_field(wp_unslash($_POST['lp_vorname'])) : '';
+  $lp_nachname = isset($_POST['lp_nachname']) ? sanitize_text_field(wp_unslash($_POST['lp_nachname'])) : '';
+  $lp_email = isset($_POST['lp_email']) ? sanitize_email(wp_unslash($_POST['lp_email'])) : '';
+  $lp_telefon = isset($_POST['lp_telefon']) ? sanitize_text_field(wp_unslash($_POST['lp_telefon'])) : '';
+  $lp_honeypot = isset($_POST['website']) ? trim((string) wp_unslash($_POST['website'])) : '';
+  $lp_form_time = isset($_POST['lp_form_time']) ? absint($_POST['lp_form_time']) : 0;
+  $lp_current_url = home_url(isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '/');
+  $lp_redirect_base = remove_query_arg(array(
+    'lp_form_action',
+    'lp_form_nonce',
+    'website',
+    'lp_vorname',
+    'lp_nachname',
+    'lp_email',
+    'lp_telefon',
+    'lp_form_time',
+    'lp_sent',
+    'lp_error',
+  ), $lp_current_url);
+
+  if (!isset($_POST['lp_form_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['lp_form_nonce'])), 'lp_huefte_contact')) {
+    $lp_form_status = 'error';
+    $lp_form_message = 'Die Anfrage konnte nicht verifiziert werden. Bitte versuchen Sie es erneut.';
+  } elseif ($lp_honeypot !== '') {
+    wp_safe_redirect(add_query_arg('lp_sent', '1', $lp_redirect_base) . '#formular');
+    exit;
+  } elseif ($lp_form_time === 0 || time() - $lp_form_time < 3) {
+    $lp_form_status = 'error';
+    $lp_form_message = 'Die Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.';
+  } elseif ($lp_nachname === '' || ($lp_email !== '' && !is_email($lp_email)) || !preg_match('/^[0-9+\-\s()\/]{6,20}$/', $lp_telefon)) {
+    $lp_form_status = 'error';
+    $lp_form_message = 'Bitte füllen Sie alle Felder aus und geben Sie eine gültige E-Mail Adresse sowie Telefonnummer ein.';
+  } else {
+    $lp_ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : 'unknown';
+    $lp_rate_key = 'lp_huefte_rate_' . md5($lp_ip);
+
+    if (get_transient($lp_rate_key)) {
+      $lp_form_status = 'error';
+      $lp_form_message = 'Bitte warten Sie kurz, bevor Sie eine neue Anfrage senden.';
+    } else {
+      set_transient($lp_rate_key, 1, 5 * MINUTE_IN_SECONDS);
+
+      $lp_subject = 'Neue Anfrage Hüftendoprothetik Landing Page';
+      $lp_body = implode("\n", array(
+        'Neue Anfrage über die Landing Page:',
+        '',
+        'Name: ' . $lp_vorname . ' ' . $lp_nachname,
+        'E-Mail: ' . $lp_email,
+        'Telefon: ' . $lp_telefon,
+        '',
+        'Seite: ' . home_url(isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '/'),
+      ));
+      $lp_headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: ' . $lp_vorname . ' ' . $lp_nachname . ' <' . $lp_email . '>',
+      );
+
+      if (wp_mail($lp_form_recipient, $lp_subject, $lp_body, $lp_headers)) {
+        wp_safe_redirect(add_query_arg('lp_sent', '1', $lp_redirect_base) . '#formular');
+        exit;
+      } else {
+        wp_safe_redirect(add_query_arg('lp_error', '1', $lp_redirect_base) . '#formular');
+        exit;
+      }
+    }
+  }
+}
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <title><?php wp_title(''); ?></title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <?php wp_head(); ?>
+
+  <style>
+    
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f3f3f3 !important;
+    }
+
+    body {
+      overflow-x: hidden;
+      padding-bottom: 86px;
+    }
+
+    .lp-page,
+    .lp-page * {
+      box-sizing: border-box;
+      font-family: 'Figtree', Arial, sans-serif !important;
+    }
+
+    .lp-page {
+      width: 1024px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #3f3f46;
+      overflow: hidden;
+    }
+
+    .lp-page a {
+      text-decoration: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .lp-page .lp-top {
+      background: #ffffff;
+      padding: 52px 48px 24px;
+    }
+
+    .lp-page .lp-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .lp-page .lp-doctor {
+      flex: 0 0 auto;
+    }
+
+    .lp-page .lp-doctor-small {
+      margin: 0 0 2px;
+      color: #3f3f46;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-doctor-name {
+      margin: 0;
+      color: #6A96A5;
+      font-size: 22px;
+      line-height: 26px;
+      font-weight: 700;
+    }
+
+    .lp-page .lp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 306px;
+      width: 306px;
+      height: 58px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 8px;
+      background: #6A96A5;
+      color: #ffffff !important;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .lp-page .lp-btn:hover,
+    .lp-page .lp-btn:focus {
+      color: #ffffff !important;
+      background: #6A96A5;
+      opacity: 0.92;
+    }
+
+    /* =========================
+       HERO IMAGE
+    ========================= */
+
+    .lp-page .lp-hero-image {
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      background: #eef5f7;
+    }
+
+    .lp-page .lp-hero-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* =========================
+       TITLE BLOCK
+    ========================= */
+
+    .lp-page .lp-title-wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin-top: -42px;
+      padding: 0;
+      background: transparent;
+    }
+
+    .lp-page .lp-title-card {
+      width: 100%;
+      background: #6A96A5;
+      border-radius: 26px 26px 0 0;
+      overflow: hidden;
+    }
+
+    .lp-page .lp-title-bar {
+      background: #6A96A5;
+      color: #ffffff;
+      padding: 17px 48px 14px;
+      font-size: 22px;
+      line-height: 26px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .lp-page .lp-title-content {
+      background: #f8fbfc;
+      border-radius: 24px 24px 0 0;
+      padding: 34px 48px 32px;
+    }
+
+    .lp-page .lp-title-content h1 {
+      margin: 0;
+      max-width: 760px;
+      color: #6A96A5;
+      font-size: 36px;
+      line-height: 1.22;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .lp-page .lp-title-content h1 strong {
+      display: block;
+      font-weight: 700;
+    }
+
+    /* =========================
+       REVIEW BLOCK
+    ========================= */
+
+    .lp-page .lp-review-section {
+      background: #f8fbfc;
+      padding: 0 48px 46px;
+    }
+
+    .lp-page .lp-review-card {
+      position: relative;
+      width: 520px;
+      max-width: calc(100% - 96px);
+      margin: 0 auto;
+      padding: 24px 42px 26px;
+      background: #ffffff;
+      border: 1px solid rgba(106, 150, 165, 0.12);
+      border-radius: 22px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+
+    .lp-page .lp-review-slides {
+      position: relative;
+    }
+
+    .lp-page .lp-review-slide {
+      display: none;
+      width: 100%;
+    }
+
+    .lp-page .lp-review-slide.active {
+      display: block;
+    }
+
+    .lp-page .lp-review-stars {
+      margin: 0 0 15px;
+      color: #ffb400;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    .lp-page .lp-review-text {
+      margin: 0 auto 13px;
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-review-author {
+      display: block;
+      color: #3f3f46;
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .lp-page .lp-review-arrow {
+      position: absolute;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid rgba(106, 150, 165, 0.16);
+      border-radius: 50%;
+      appearance: none;
+      background: #ffffff;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      color: #6A96A5;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      transform: translateY(-50%);
+    }
+
+    .lp-page .lp-review-arrow-left {
+      left: -14px;
+    }
+
+    .lp-page .lp-review-arrow-right {
+      right: -14px;
+    }
+
+    .lp-page .lp-review-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 18px;
+    }
+
+    .lp-page .lp-review-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      appearance: none;
+      background: #dfe8eb;
+      cursor: pointer;
+    }
+
+    .lp-page .lp-review-dot.active {
+      background: #6A96A5;
+    }
+
+    /* =========================
+       EXPERT SECTION
+    ========================= */
+
+    .lp-page .lp-expert-section {
+      padding: 34px 48px 40px;
+      background: white;
+    }
+
+    .lp-page .lp-expert-topbar {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 0;
+      background: #6A96A5;
+      color: #ffffff;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+
+    .lp-page .lp-expert-card-wrap {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+      padding-top: 58px;
+    }
+
+    .lp-page .lp-expert-photo {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      z-index: 3;
+      width: 128px;
+      height: 128px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #d9dde3;
+      box-shadow: none;
+      transform: translateX(-50%);
+    }
+
+    .lp-page .lp-expert-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .lp-page .lp-expert-card {
+      padding: 84px 48px 28px;
+      border: 1px solid rgba(106, 150, 165, 0.12);
+      border-radius: 24px;
+      background: #f1f3f4;
+      text-align: center;
+    }
+
+    .lp-page .lp-expert-card h2 {
+      margin: 0 0 6px;
+      color: #6A96A5;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .lp-page .lp-expert-subtitle {
+      margin: 0 0 20px;
+      color: #4b4b4f;
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-expert-lead {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      color: #3d3d42;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .lp-page .lp-expert-tags {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .lp-page .lp-expert-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      padding: 8px 18px;
+      border: 1px solid rgba(106, 150, 165, 0.08);
+      border-radius: 999px;
+      background: #f8fbfc;
+      color: #9bb9c6;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* =========================
+       INDICATIONS SECTION
+    ========================= */
+
+    .lp-page .lp-indications-section {
+      padding: 42px 60px 54px;
+      background: #f1f3f4;
+    }
+
+    .lp-page .lp-indications-title {
+      margin: 0 0 12px;
+      color: #6A96A5;
+      font-size: 30px;
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .lp-page .lp-indications-text {
+      max-width: 760px;
+      margin: 0 0 34px;
+      color: #4b4b4f;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-indications-text strong {
+      color: #222226;
+      font-weight: 700;
+    }
+
+    .lp-page .lp-symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 26px;
+      max-width: 700px;
+    }
+
+    .lp-page .lp-symptom-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 84px;
+      padding: 18px 22px 17px 82px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #ffffff;
+      color: #151518;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-symptom-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 9px;
+      background: #6A96A5;
+    }
+
+    .lp-page .lp-symptom-icon {
+      position: absolute;
+      left: 26px;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      color: #6A96A5;
+      transform: translateY(-50%);
+    }
+
+    .lp-page .lp-symptom-icon img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .lp-page .lp-symptom-card strong {
+      font-weight: 700;
+    }
+
+    /* =========================
+       CTA FORM SECTION
+    ========================= */
+
+    .lp-page .lp-cta-section {
+      position: relative;
+      padding: 78px 60px 64px;
+      background: #6A96A5;
+      scroll-margin-top: 20px;
+    }
+
+    .lp-page .lp-section-arrow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      color: #6A96A5;
+      transform: translate(-50%, -50%);
+    }
+
+    .lp-page .lp-section-arrow svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+    }
+
+    .lp-page .lp-cta-card {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 34px 56px 40px;
+      border-radius: 28px;
+      background: #ffffff;
+    }
+
+    .lp-page .lp-cta-card h2 {
+      max-width: 620px;
+      margin: 0 0 26px;
+      color: #6A96A5;
+      font-size: 34px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .lp-page .lp-cta-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .lp-page .lp-form-message {
+      margin: 0 0 18px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .lp-page .lp-form-message.success {
+      background: rgba(106, 150, 165, 0.12);
+      color: #416171;
+    }
+
+    .lp-page .lp-form-message.error {
+      background: rgba(180, 64, 64, 0.1);
+      color: #8a2f2f;
+    }
+
+    .lp-page .lp-form-hidden {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .lp-page .lp-cta-input {
+      width: 100%;
+      height: 58px;
+      padding: 0 18px;
+      border: 1px solid #e1e1e1;
+      border-radius: 9px;
+      appearance: none;
+      background: #ffffff;
+      color: #3f3f46;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 400;
+      outline: none;
+    }
+
+    .lp-page .lp-cta-input::placeholder {
+      color: #a7a7ad;
+      opacity: 1;
+    }
+
+    .lp-page .lp-cta-input:focus {
+      border-color: #6A96A5;
+    }
+
+    .lp-page .lp-cta-note {
+      margin: 0;
+      color: #555555;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-cta-note a {
+      color: #3f3f46;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .lp-page .lp-cta-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 60px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 8px;
+      appearance: none;
+      background: #6A96A5;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* =========================
+       FAQ SECTION
+    ========================= */
+
+    .lp-page .lp-faq-section {
+      padding: 42px 60px 58px;
+      background: #ffffff;
+    }
+
+    .lp-page .lp-faq-title {
+      margin: 0 0 28px;
+      color: #6A96A5;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .lp-page .lp-faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .lp-page .lp-faq-item {
+      border: 1px solid #e3e5e6;
+      border-radius: 22px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .lp-page .lp-faq-item[open] {
+      border: 2px solid #1594f5;
+    }
+
+    .lp-page .lp-faq-question {
+      position: relative;
+      display: block;
+      padding: 24px 62px 24px 30px;
+      color: #111114;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    .lp-page .lp-faq-question::-webkit-details-marker {
+      display: none;
+    }
+
+    .lp-page .lp-faq-question::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 30px;
+      color: #6A96A5;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 400;
+      transform: translateY(-50%);
+    }
+
+    .lp-page .lp-faq-answer {
+      margin: -8px 0 0;
+      padding: 0 62px 26px 30px;
+      color: #55555c;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    /* =========================
+       CONTACT SECTION
+    ========================= */
+
+    .lp-page .lp-contact-section {
+      padding: 36px 60px 40px;
+      background: #f1f3f4;
+      text-align: center;
+    }
+
+    .lp-page .lp-contact-title {
+      max-width: 640px;
+      margin: 0 auto 26px;
+      color: #6A96A5;
+      font-size: 32px;
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .lp-page .lp-contact-subtitle {
+      margin: 0 0 12px;
+      color: #3f3f46;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .lp-page .lp-contact-times,
+    .lp-page .lp-contact-address {
+      color: #4b4b4f;
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-contact-times {
+      margin: 0 0 26px;
+    }
+
+    .lp-page .lp-contact-location-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 12px;
+      color: #3f3f46;
+    }
+
+    .lp-page .lp-contact-location-icon svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+    }
+
+    .lp-page .lp-contact-address {
+      margin: 0 0 34px;
+    }
+
+    .lp-page .lp-contact-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: #55555c;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .lp-page .lp-contact-links a {
+      color: #55555c;
+    }
+
+    .lp-page .lp-contact-copy {
+      margin: 0;
+      color: #55555c;
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 400;
+    }
+
+    /* =========================
+       FIXED FOOTER
+    ========================= */
+
+    .lp-fixed-footer {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      width: 1024px;
+      max-width: 100%;
+      padding: 10px 20px;
+      background: #f3f3f3;
+      transform: translateX(-50%);
+    }
+
+    .lp-fixed-footer,
+    .lp-fixed-footer * {
+      box-sizing: border-box;
+      font-family: 'Figtree', Arial, sans-serif !important;
+    }
+
+    .lp-fixed-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 58px;
+      border: 1px solid #6A96A5;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #6A96A5;
+      text-decoration: none;
+    }
+
+    .lp-fixed-action.lp-fixed-action-email {
+      background: #6A96A5;
+      color: #ffffff;
+    }
+
+    .lp-fixed-action svg {
+      display: block;
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    #wp-phone-fab {
+      display: none !important;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1023px) {
+      .lp-page {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .lp-page .lp-top {
+        padding: 32px 22px 22px;
+      }
+
+      .lp-page .lp-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+      }
+
+      .lp-page .lp-btn {
+        flex-basis: auto;
+        width: 100%;
+      }
+
+      .lp-page .lp-hero-image {
+        height: 260px;
+      }
+
+      .lp-page .lp-title-bar {
+        padding: 16px 22px 14px;
+        font-size: 18px;
+        line-height: 22px;
+      }
+
+      .lp-page .lp-title-content {
+        padding: 30px 22px 30px;
+      }
+
+      .lp-page .lp-title-content h1 {
+        font-size: 28px;
+      }
+
+      .lp-page .lp-review-section {
+        padding: 0 22px 38px;
+      }
+
+      .lp-page .lp-review-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 24px 28px 26px;
+      }
+
+      .lp-page .lp-review-arrow {
+        display: none;
+      }
+
+      .lp-page .lp-expert-section {
+        padding: 34px 20px 40px;
+      }
+
+      .lp-page .lp-expert-topbar {
+        font-size: 16px;
+      }
+
+      .lp-page .lp-expert-photo {
+        width: 110px;
+        height: 110px;
+      }
+
+      .lp-page .lp-expert-card {
+        padding: 78px 20px 24px;
+      }
+
+      .lp-page .lp-expert-card h2 {
+        font-size: 20px;
+      }
+
+      .lp-page .lp-expert-subtitle {
+        font-size: 15px;
+      }
+
+      .lp-page .lp-expert-lead {
+        font-size: 17px;
+      }
+
+      .lp-page .lp-expert-tag {
+        font-size: 12px;
+      }
+
+      .lp-page .lp-indications-section {
+        padding: 38px 28px 54px;
+      }
+
+      .lp-page .lp-indications-title {
+        font-size: 28px;
+      }
+
+      .lp-page .lp-indications-text {
+        margin-bottom: 34px;
+        font-size: 16px;
+      }
+
+      .lp-page .lp-symptom-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .lp-page .lp-symptom-card {
+        min-height: 84px;
+        padding: 18px 18px 17px 72px;
+        font-size: 16px;
+      }
+
+      .lp-page .lp-symptom-icon {
+        left: 22px;
+      }
+
+      .lp-page .lp-cta-section {
+        padding: 70px 28px 58px;
+      }
+
+      .lp-page .lp-section-arrow {
+        width: 66px;
+        height: 66px;
+      }
+
+      .lp-page .lp-cta-card {
+        padding: 28px 28px 34px;
+        border-radius: 22px;
+      }
+
+      .lp-page .lp-cta-card h2 {
+        font-size: 30px;
+      }
+
+      .lp-page .lp-faq-section {
+        padding: 34px 28px 38px;
+      }
+
+      .lp-page .lp-faq-title {
+        margin-bottom: 24px;
+        font-size: 28px;
+      }
+
+      .lp-page .lp-faq-question {
+        padding: 22px 54px 22px 20px;
+        font-size: 15px;
+      }
+
+      .lp-page .lp-faq-question::after {
+        right: 20px;
+        font-size: 28px;
+      }
+
+      .lp-page .lp-faq-answer {
+        padding: 0 42px 22px 20px;
+        font-size: 15px;
+      }
+
+      .lp-page .lp-contact-section {
+        padding: 34px 28px 34px;
+      }
+
+      .lp-page .lp-contact-title {
+        font-size: 28px;
+      }
+
+      .lp-fixed-footer {
+        padding: 9px 8px;
+      }
+
+      .lp-fixed-action {
+        height: 50px;
+      }
+
+      .lp-fixed-action svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="lp-page">
+  <!-- HEADER -->
+  <section class="lp-top">
+    <div class="lp-header-row">
+      <div class="lp-doctor">
+        <p class="lp-doctor-small">Prof. DDr.</p>
+        <p class="lp-doctor-name">M. Faschingbauer</p>
+      </div>
+
+      <a href="#formular" class="lp-btn">
+        Jetzt unverbindlich anfragen
+      </a>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <section class="lp-hero-image">
+    <img
+      src="https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg"
+      alt="Prof. DDr. Martin Faschingbauer künstliches Hüftgelenk"
+    >
+  </section>
+
+  <!-- TITLE BLOCK -->
+  <section class="lp-title-wrap">
+    <div class="lp-title-card">
+      <div class="lp-title-bar">
+        IHR HÜFT-OP SPEZIALIST IN WIEN
+      </div>
+
+      <div class="lp-title-content">
+        <h1>
+          Individuelle Beratung und schonende<br>
+          Hüftendoprothetik
+          <strong>Prof. DDr. Faschingbauer</strong>
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW BLOCK -->
+  <section class="lp-review-section">
+    <div class="lp-review-card" data-review-slider>
+      <button class="lp-review-arrow lp-review-arrow-left" type="button" aria-label="Vorheriger Erfahrungsbericht">‹</button>
+      <button class="lp-review-arrow lp-review-arrow-right" type="button" aria-label="Nächster Erfahrungsbericht">›</button>
+
+      <div class="lp-review-slides">
+        <article class="lp-review-slide active">
+          <div class="lp-review-stars">★★★★★</div>
+
+          <p class="lp-review-text">
+            „Von Tag 1 sprich vor der Operation bis zur Nachbehandlung
+            hat er mir immer das Gefühl gegeben für mich den Patienten da zu sein.
+            Absolut kompetent menschlich top. Bei mir wurde eine Hüft Operation
+            durchgeführt, würde und kann ihn nur weiterempfehlen.“
+          </p>
+
+          <strong class="lp-review-author">
+            Kristian F.
+          </strong>
+        </article>
+
+        <article class="lp-review-slide">
+          <div class="lp-review-stars">★★★★★</div>
+
+          <p class="lp-review-text">
+            „Sehr freundliche und klare Beratung. Ich habe mich vor der Operation
+            gut aufgeklärt gefühlt und wusste genau, was auf mich zukommt.
+            Die Betreuung war professionell und sehr menschlich.“
+          </p>
+
+          <strong class="lp-review-author">
+            Martina S.
+          </strong>
+        </article>
+
+        <article class="lp-review-slide">
+          <div class="lp-review-stars">★★★★★</div>
+
+          <p class="lp-review-text">
+            „Nach langer Zeit mit Schmerzen kann ich wieder deutlich besser gehen.
+            Die Abläufe waren gut organisiert, alle Fragen wurden verständlich
+            beantwortet und das Ergebnis ist für mich sehr zufriedenstellend.“
+          </p>
+
+          <strong class="lp-review-author">
+            Peter H.
+          </strong>
+        </article>
+
+        <article class="lp-review-slide">
+          <div class="lp-review-stars">★★★★★</div>
+
+          <p class="lp-review-text">
+            „Ich wurde sehr aufmerksam begleitet, von der ersten Untersuchung bis
+            zur Kontrolle nach dem Eingriff. Besonders geschätzt habe ich die
+            ruhige Art und die ehrliche Einschätzung.“
+          </p>
+
+          <strong class="lp-review-author">
+            Elisabeth K.
+          </strong>
+        </article>
+      </div>
+    </div>
+
+    <div class="lp-review-dots">
+      <button class="lp-review-dot active" type="button" aria-label="Erfahrungsbericht 1 anzeigen"></button>
+      <button class="lp-review-dot" type="button" aria-label="Erfahrungsbericht 2 anzeigen"></button>
+      <button class="lp-review-dot" type="button" aria-label="Erfahrungsbericht 3 anzeigen"></button>
+      <button class="lp-review-dot" type="button" aria-label="Erfahrungsbericht 4 anzeigen"></button>
+    </div>
+  </section>
+
+  <!-- EXPERT SECTION -->
+  <section class="lp-expert-section">
+    <div class="lp-expert-topbar">Rasche Terminvergabe · Persönliche Beratung</div>
+
+    <div class="lp-expert-card-wrap">
+      <div class="lp-expert-photo">
+        <img src="https://ortho-faschingbauer.at/wp-content/uploads/martin-faschinbauer-kuehl-03.png" alt="Prof. DDr. M. Faschingbauer">
+      </div>
+
+      <div class="lp-expert-card">
+        <h2>Prof. DDr. M. Faschingbauer</h2>
+        <p class="lp-expert-subtitle">Facharzt für Orthopädie und Unfallchirurgie</p>
+
+        <p class="lp-expert-lead">
+          Langjährige Erfahrung in der operativen Orthopädie mit Fokus auf Hüft- und Knieendoprothetik.
+        </p>
+
+        <div class="lp-expert-tags">
+          <span class="lp-expert-tag">Head Of Adult Reconstruction &amp; Joint Replacement, Uni Ulm (2016–2024)</span>
+          <span class="lp-expert-tag">Zahlreiche Publikationen Zu Hüft-TEP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDICATIONS SECTION -->
+  <section class="lp-indications-section">
+    <h2 class="lp-indications-title">Wann ist eine Hüft-OP sinnvoll?</h2>
+
+    <p class="lp-indications-text">
+      Ein <strong>künstliches Hüftgelenk</strong> wird bei fortgeschrittenem
+      <strong>Verschleiß und Dauerschmerz empfohlen</strong>, insbesondere
+      wenn folgende Symptome auftreten:
+    </p>
+
+    <div class="lp-symptom-grid">
+      <div class="lp-symptom-card">
+        <span class="lp-symptom-icon" aria-hidden="true">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+        </span>
+        <span>Schmerzen in <strong>Leiste, Oberschenkel</strong> oder <strong>Knie</strong></span>
+      </div>
+
+      <div class="lp-symptom-card">
+        <span class="lp-symptom-icon" aria-hidden="true">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+        </span>
+        <span>Schwierigkeiten beim <strong>Gehen</strong> oder <strong>Treppensteigen</strong></span>
+      </div>
+
+      <div class="lp-symptom-card">
+        <span class="lp-symptom-icon" aria-hidden="true">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+        </span>
+        <span><strong>Steifigkeit am Morgen</strong></span>
+      </div>
+
+      <div class="lp-symptom-card">
+        <span class="lp-symptom-icon" aria-hidden="true">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/podiatry_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+        </span>
+        <span><strong>Probleme</strong> beim <strong>Anziehen</strong> von Socken oder Schuhe</span>
+      </div>
+
+      <div class="lp-symptom-card">
+        <span class="lp-symptom-icon" aria-hidden="true">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/assist_walker_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+        </span>
+        <span><strong>Hinken oder Schonhaltung</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FORM SECTION -->
+  <section id="formular" class="lp-cta-section">
+    <div class="lp-section-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"></path>
+      </svg>
+    </div>
+
+    <div class="lp-cta-card">
+      <h2>Jetzt unverbindliche Beratung anfragen</h2>
+
+      <?php if ($lp_form_message !== '') : ?>
+        <p class="lp-form-message <?php echo esc_attr($lp_form_status); ?>">
+          <?php echo esc_html($lp_form_message); ?>
+        </p>
+      <?php endif; ?>
+
+      <form class="lp-cta-form" action="<?php echo esc_url(get_permalink()); ?>#formular" method="post">
+        <input type="hidden" name="lp_form_action" value="lp_huefte_contact">
+        <input type="hidden" name="lp_form_time" value="<?php echo esc_attr(time()); ?>">
+        <?php wp_nonce_field('lp_huefte_contact', 'lp_form_nonce'); ?>
+
+        <label class="lp-form-hidden" for="lp-website">Website</label>
+        <input id="lp-website" class="lp-form-hidden" type="text" name="website" tabindex="-1" autocomplete="off">
+
+        <input class="lp-cta-input" type="text" name="lp_vorname" placeholder="Vorname" value="<?php echo isset($lp_vorname) && $lp_form_status !== 'success' ? esc_attr($lp_vorname) : ''; ?>">
+        <input class="lp-cta-input" type="text" name="lp_nachname" placeholder="Nachname*" value="<?php echo isset($lp_nachname) && $lp_form_status !== 'success' ? esc_attr($lp_nachname) : ''; ?>" required>
+        <input class="lp-cta-input" type="email" name="lp_email" placeholder="E-Mail Adresse" value="<?php echo isset($lp_email) && $lp_form_status !== 'success' ? esc_attr($lp_email) : ''; ?>">
+        <input class="lp-cta-input" type="tel" name="lp_telefon" placeholder="Telefonnummer*" value="<?php echo isset($lp_telefon) && $lp_form_status !== 'success' ? esc_attr($lp_telefon) : ''; ?>" required pattern="[0-9+\-\s()\/]{6,20}" inputmode="tel">
+
+        <p class="lp-cta-note">
+          Mit dem Absenden stimmen Sie der <a href="/datenschutz/">Datenschutzerklärung</a>
+          sowie der <a href="#kontakt">Kontaktaufnahme</a> durch Ortho Faschingbauer zur
+          Terminvereinbarung zu.
+        </p>
+
+        <button class="lp-cta-submit" type="submit">
+          Jetzt unverbindlich Termin anfragen
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="lp-faq-section">
+    <h2 class="lp-faq-title">Häufig gestellte Fragen</h2>
+
+    <div class="lp-faq-list">
+      <details class="lp-faq-item" open>
+        <summary class="lp-faq-question">Wie lange hält ein künstliches Hüftgelenk?</summary>
+        <p class="lp-faq-answer">
+          Moderne Implantate in der Hüftendoprothetik haben eine sehr hohe Lebensdauer.
+          Bei normaler Belastung halten heute über 90% der Prothesen 20 bis 25 Jahre oder länger.
+        </p>
+      </details>
+
+      <details class="lp-faq-item">
+        <summary class="lp-faq-question">Habe ich nach der Hüftoperation starke Schmerzen?</summary>
+        <p class="lp-faq-answer">
+          Schmerzen nach der Operation sind normal, werden aber mit einem individuellen Schmerzkonzept
+          behandelt und nehmen in der Regel Schritt für Schritt deutlich ab.
+        </p>
+      </details>
+
+      <details class="lp-faq-item">
+        <summary class="lp-faq-question">Wann kann ich nach dem Hüftgelenkersatz wieder Sport treiben?</summary>
+        <p class="lp-faq-answer">
+          Das hängt vom Heilungsverlauf und der Sportart ab. Schonende Bewegung beginnt meist früh,
+          sportliche Belastung wird individuell in der Nachkontrolle besprochen.
+        </p>
+      </details>
+
+      <details class="lp-faq-item">
+        <summary class="lp-faq-question">Gibt es Unterschiede bei den Materialien beim Gelenkersatz der Hüfte?</summary>
+        <p class="lp-faq-answer">
+          Ja. Material und Implantattyp werden passend zu Knochenqualität, Aktivitätsniveau und
+          medizinischer Ausgangssituation ausgewählt.
+        </p>
+      </details>
+
+      <details class="lp-faq-item">
+        <summary class="lp-faq-question">Ist ein Hüftgelenkersatz im Alltag spürbar?</summary>
+        <p class="lp-faq-answer">
+          Ziel ist ein möglichst natürliches Bewegungsgefühl. Viele Patientinnen und Patienten nehmen
+          das künstliche Gelenk im Alltag nach der Rehabilitation kaum noch bewusst wahr.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="kontakt" class="lp-contact-section">
+    <h2 class="lp-contact-title">Wir freuen uns auf Ihre Kontaktaufnahme!</h2>
+
+    <p class="lp-contact-subtitle">Ordinationszeiten</p>
+
+    <p class="lp-contact-times">
+      Mo 09:00 – 13:00<br>
+      Do 14:00 – 20:00<br>
+      Fr 09:00 – 13:00<br>
+      und nach Vereinbarung
+    </p>
+
+    <div class="lp-contact-location-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path>
+        <circle cx="12" cy="9" r="2.5"></circle>
+      </svg>
+    </div>
+
+    <p class="lp-contact-address">
+      Lazarettgasse 25 / 1.OG<br>
+      A-1090 Wien
+    </p>
+
+    <div class="lp-contact-links">
+      <a href="/impressum/">Impressum</a>
+      <span>|</span>
+      <a href="/datenschutz/">Datenschutz</a>
+    </div>
+
+    <p class="lp-contact-copy">© 2026 Prof. DDr. med. univ. Martin Faschingbauer</p>
+  </section>
+</main>
+
+<div class="lp-fixed-footer">
+  <a class="lp-fixed-action lp-fixed-action-phone" href="tel:+431401807010" aria-label="Telefonisch anrufen">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+    </svg>
+  </a>
+
+  <a class="lp-fixed-action lp-fixed-action-email" href="#formular" aria-label="Zum Formular springen">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
+    </svg>
+  </a>
+</div>
+
+<script>
+  (function () {
+    const slider = document.querySelector('[data-review-slider]');
+
+    if (!slider) {
+      return;
+    }
+
+    const slidesWrap = slider.querySelector('.lp-review-slides');
+    const slides = Array.from(slider.querySelectorAll('.lp-review-slide'));
+    const dots = Array.from(document.querySelectorAll('.lp-review-dot'));
+    const prevButton = slider.querySelector('.lp-review-arrow-left');
+    const nextButton = slider.querySelector('.lp-review-arrow-right');
+    let activeIndex = 0;
+    let autoplayId = null;
+
+    function setFixedSlideHeight() {
+      slidesWrap.style.minHeight = '';
+
+      const maxHeight = slides.reduce(function (height, slide) {
+        const wasActive = slide.classList.contains('active');
+
+        slide.style.display = 'block';
+        const slideHeight = slide.offsetHeight;
+        slide.style.display = '';
+        slide.classList.toggle('active', wasActive);
+
+        return Math.max(height, slideHeight);
+      }, 0);
+
+      slidesWrap.style.minHeight = maxHeight + 'px';
+    }
+
+    function showSlide(index) {
+      activeIndex = (index + slides.length) % slides.length;
+
+      slides.forEach(function (slide, slideIndex) {
+        slide.classList.toggle('active', slideIndex === activeIndex);
+      });
+
+      dots.forEach(function (dot, dotIndex) {
+        dot.classList.toggle('active', dotIndex === activeIndex);
+      });
+    }
+
+    function startAutoplay() {
+      window.clearInterval(autoplayId);
+      autoplayId = window.setInterval(function () {
+        showSlide(activeIndex + 1);
+      }, 5000);
+    }
+
+    prevButton.addEventListener('click', function () {
+      showSlide(activeIndex - 1);
+      startAutoplay();
+    });
+
+    nextButton.addEventListener('click', function () {
+      showSlide(activeIndex + 1);
+      startAutoplay();
+    });
+
+    dots.forEach(function (dot, dotIndex) {
+      dot.addEventListener('click', function () {
+        showSlide(dotIndex);
+        startAutoplay();
+      });
+    });
+
+    window.addEventListener('resize', setFixedSlideHeight);
+    setFixedSlideHeight();
+    startAutoplay();
+  }());
+</script>
+
+<?php wp_footer(); ?>
+
+</body>
+</html>

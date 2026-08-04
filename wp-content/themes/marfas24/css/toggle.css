@@ -1,0 +1,35 @@
+.acc_item {
+	width: 100%;
+	border-top: 1px solid #fff;
+}
+
+.acc_item:first-child {
+	border: none;
+}
+
+.acc_title {
+	display: block;
+	width: 100%;
+	padding: 10px 20px;
+	color: #fff;
+	background-color: #007edf;
+	border: none;
+}
+
+.acc_item.is-open .acc_title {
+	color: #fff;
+	background-color: #000;
+}
+
+.acc_content {
+	background-color: #fff;
+}
+
+.acc_content p {
+	margin: 0;
+	padding: 20px;
+}
+
+.is-hidden {
+	display: none;
+}
