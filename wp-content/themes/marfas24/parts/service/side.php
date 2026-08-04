@@ -37,6 +37,10 @@ $profile_text = $is_en
   ? 'Extensive experience in orthopaedic surgery with a focus on hip and knee endoprosthetics.'
   : 'Langjährige Erfahrung in der operativen Orthopädie mit Fokus auf Hüft- und Knieendoprothetik.';
 $profile_btn  = $is_en ? 'More about me' : 'Mehr über mich';
+
+// On the "Über mich" page itself, a self-referential profile card is redundant
+// (the whole page already is the bio). Show reviews + Schwerpunkte links instead.
+$svc_is_about_page = is_page('ueber-mich');
 ?>
 
 <aside class="svc-hero__side">
@@ -69,29 +73,38 @@ $profile_btn  = $is_en ? 'More about me' : 'Mehr über mich';
     </div>
   <?php endif; ?>
 
-  <!-- Profile card (STATIC) -->
-  <div class="svc-card svc-card--profile">
-    <div class="svc-profile__avatar">
-      <img
-        src="<?php echo esc_url(site_url('/wp-content/uploads/martin-faschinbauer-kuehl-03.png')); ?>"
-        alt="<?php echo esc_attr($profile_name); ?>"
-        loading="lazy"
-      >
+  <?php if ($svc_is_about_page) : ?>
+
+    <?php get_template_part('parts/service/reviews'); ?>
+    <?php get_template_part('parts/service/schwerpunkte-sidebar'); ?>
+
+  <?php else : ?>
+
+    <!-- Profile card (STATIC) -->
+    <div class="svc-card svc-card--profile">
+      <div class="svc-profile__avatar">
+        <img
+          src="<?php echo esc_url(site_url('/wp-content/uploads/martin-faschinbauer-kuehl-03.png')); ?>"
+          alt="<?php echo esc_attr($profile_name); ?>"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="svc-profile__name"><?php echo esc_html($profile_name); ?></div>
+      <div class="svc-profile__sub"><?php echo esc_html($profile_sub); ?></div>
+      <div class="svc-profile__tagline"><?php echo esc_html($profile_tag); ?></div>
+
+      <div class="svc-profile__text">
+        <p><?php echo esc_html($profile_text); ?></p>
+      </div>
+
+      <a href="<?php echo esc_url($about_url); ?>" class="svc-btn svc-btn--primary svc-profile__btn">
+        <?php echo esc_html($profile_btn); ?>
+      </a>
     </div>
 
-    <div class="svc-profile__name"><?php echo esc_html($profile_name); ?></div>
-    <div class="svc-profile__sub"><?php echo esc_html($profile_sub); ?></div>
-    <div class="svc-profile__tagline"><?php echo esc_html($profile_tag); ?></div>
+    <?php get_template_part('parts/service/reviews'); ?>
 
-    <div class="svc-profile__text">
-      <p><?php echo esc_html($profile_text); ?></p>
-    </div>
-
-    <a href="<?php echo esc_url($about_url); ?>" class="svc-btn svc-btn--primary svc-profile__btn">
-      <?php echo esc_html($profile_btn); ?>
-    </a>
-  </div>
-
-  <?php get_template_part('parts/service/reviews'); ?>
+  <?php endif; ?>
 
 </aside>
