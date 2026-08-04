@@ -26,6 +26,9 @@ if ($is_en) {
     $contact_url = home_url('/kontakt/');
 }
 
+// "Über mich" page has no English version yet — fall back to the German URL either way.
+$about_url = home_url('/ueber-mich/');
+
 // Profile card strings
 $profile_name = 'Prof. DDr. M. Faschingbauer';
 $profile_sub  = $is_en ? 'Specialist in Orthopaedics and Trauma Surgery' : 'Facharzt für Orthopädie und Unfallchirurgie';
@@ -33,7 +36,7 @@ $profile_tag  = $is_en ? 'Specialist in Endoprosthetics' : 'Spezialist für Endo
 $profile_text = $is_en
   ? 'Extensive experience in orthopaedic surgery with a focus on hip and knee endoprosthetics.'
   : 'Langjährige Erfahrung in der operativen Orthopädie mit Fokus auf Hüft- und Knieendoprothetik.';
-$profile_btn  = $is_en ? 'Book an appointment' : 'Termin vereinbaren';
+$profile_btn  = $is_en ? 'More about me' : 'Mehr über mich';
 ?>
 
 <aside class="svc-hero__side">
@@ -84,7 +87,7 @@ $profile_btn  = $is_en ? 'Book an appointment' : 'Termin vereinbaren';
       <p><?php echo esc_html($profile_text); ?></p>
     </div>
 
-    <a href="<?php echo esc_url($contact_url); ?>" class="svc-btn svc-btn--primary svc-profile__btn">
+    <a href="<?php echo esc_url($about_url); ?>" class="svc-btn svc-btn--primary svc-profile__btn">
       <?php echo esc_html($profile_btn); ?>
     </a>
   </div>
