@@ -3,6 +3,9 @@ name: Deploy to GridPane
 on:
   push:
     branches: [main]
+    paths:
+      - "wp-content/themes/marfas24/**"
+      - "wp-content/plugins/faschingbauer-medical-schema/**"
 
 jobs:
   deploy:
