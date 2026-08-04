@@ -3,7 +3,6 @@ if ( ! defined('ABSPATH') ) exit;
 
 $post_id = get_queried_object_id();
 
-// можешь переиспользовать те же переменные, что в hero.php:
 $hero_kurzinfo = get_field('hero_kurzinfo', $post_id);
 
 $has_kurzinfo = false;
@@ -14,10 +13,32 @@ if (!empty($hero_kurzinfo) && is_array($hero_kurzinfo)) {
     if ($label !== '' || $value !== '') { $has_kurzinfo = true; break; }
   }
 }
+
+/* ===========================
+   WPML / Language helpers
+   =========================== */
+$lang  = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : 'de';
+$is_en = ($lang === 'en');
+
+if ($is_en) {
+    $contact_url = home_url('/en/contact/');
+} else {
+    $contact_url = home_url('/kontakt/');
+}
+
+// Profile card strings
+$profile_name = 'Prof. DDr. M. Faschingbauer';
+$profile_sub  = $is_en ? 'Specialist in Orthopaedics and Trauma Surgery' : 'Facharzt für Orthopädie und Unfallchirurgie';
+$profile_tag  = $is_en ? 'Specialist in Endoprosthetics' : 'Spezialist für Endoprothetik';
+$profile_text = $is_en
+  ? 'Extensive experience in orthopaedic surgery with a focus on hip and knee endoprosthetics.'
+  : 'Langjährige Erfahrung in der operativen Orthopädie mit Fokus auf Hüft- und Knieendoprothetik.';
+$profile_btn  = $is_en ? 'Book an appointment' : 'Termin vereinbaren';
 ?>
 
-<div class="svc-hero__side">
+<aside class="svc-hero__side">
 
+  <!-- Kurzinfo -->
   <?php if ($has_kurzinfo) : ?>
     <div class="svc-card">
       <?php
@@ -45,26 +66,29 @@ if (!empty($hero_kurzinfo) && is_array($hero_kurzinfo)) {
     </div>
   <?php endif; ?>
 
+  <!-- Profile card (STATIC) -->
   <div class="svc-card svc-card--profile">
     <div class="svc-profile__avatar">
       <img
         src="<?php echo esc_url(site_url('/wp-content/uploads/martin-faschinbauer-kuehl-03.png')); ?>"
-        alt="Prof. DDr. M. Faschingbauer"
+        alt="<?php echo esc_attr($profile_name); ?>"
         loading="lazy"
       >
     </div>
 
-    <div class="svc-profile__name">Prof. DDr. M. Faschingbauer</div>
-    <div class="svc-profile__sub">Facharzt für Orthopädie und Unfallchirurgie</div>
-    <div class="svc-profile__tagline">Spezialist für Endoprothetik</div>
+    <div class="svc-profile__name"><?php echo esc_html($profile_name); ?></div>
+    <div class="svc-profile__sub"><?php echo esc_html($profile_sub); ?></div>
+    <div class="svc-profile__tagline"><?php echo esc_html($profile_tag); ?></div>
 
     <div class="svc-profile__text">
-      <p>Langjährige Erfahrung in der operativen Orthopädie mit Fokus auf Hüft- und Knieendoprothetik.</p>
+      <p><?php echo esc_html($profile_text); ?></p>
     </div>
 
-    <a href="/kontakt/" class="svc-btn svc-btn--primary svc-profile__btn">
-      Termin vereinbaren
+    <a href="<?php echo esc_url($contact_url); ?>" class="svc-btn svc-btn--primary svc-profile__btn">
+      <?php echo esc_html($profile_btn); ?>
     </a>
   </div>
 
-</div>
+  <?php get_template_part('parts/service/reviews'); ?>
+
+</aside>
