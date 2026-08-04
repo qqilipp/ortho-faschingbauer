@@ -32,11 +32,6 @@ $svc_has_several = count($svc_reviews) > 1;
   <div class="svc-card__title">Patientenstimmen</div>
 
   <div class="svc-reviews__viewport">
-    <?php if ($svc_has_several) : ?>
-      <button class="svc-reviews__arrow svc-reviews__arrow--left" type="button" aria-label="Vorherige Bewertung">‹</button>
-      <button class="svc-reviews__arrow svc-reviews__arrow--right" type="button" aria-label="Nächste Bewertung">›</button>
-    <?php endif; ?>
-
     <div class="svc-reviews__track">
       <?php foreach ($svc_reviews as $review) :
         $sterne = $review['sterne'] > 0 ? min(5, $review['sterne']) : 5;
@@ -55,10 +50,16 @@ $svc_has_several = count($svc_reviews) > 1;
   </div>
 
   <?php if ($svc_has_several) : ?>
-    <div class="svc-reviews__dots">
-      <?php foreach ($svc_reviews as $i => $review) : ?>
-        <button class="svc-reviews__dot<?php echo $i === 0 ? ' is-active' : ''; ?>" type="button" aria-label="<?php echo esc_attr('Bewertung ' . ($i + 1) . ' anzeigen'); ?>"></button>
-      <?php endforeach; ?>
+    <div class="svc-reviews__nav">
+      <button class="svc-reviews__arrow svc-reviews__arrow--left" type="button" aria-label="Vorherige Bewertung">‹</button>
+
+      <div class="svc-reviews__dots">
+        <?php foreach ($svc_reviews as $i => $review) : ?>
+          <button class="svc-reviews__dot<?php echo $i === 0 ? ' is-active' : ''; ?>" type="button" aria-label="<?php echo esc_attr('Bewertung ' . ($i + 1) . ' anzeigen'); ?>"></button>
+        <?php endforeach; ?>
+      </div>
+
+      <button class="svc-reviews__arrow svc-reviews__arrow--right" type="button" aria-label="Nächste Bewertung">›</button>
     </div>
   <?php endif; ?>
 </div>
