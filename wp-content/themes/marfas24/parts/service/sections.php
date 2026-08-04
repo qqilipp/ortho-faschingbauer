@@ -117,11 +117,19 @@ if ( ! function_exists('have_rows') || ! have_rows('service_content', $post_id) 
         <?php endif; ?>
 
       <?php elseif ( get_row_layout() === 'form' ) :
-        $form_id = get_sub_field('form_id');
+        $svc_form_title  = get_sub_field('titel');
+        $svc_form_teaser = get_sub_field('teaser');
+        $form_id         = get_sub_field('form_id');
       ?>
         <?php if ($form_id) : ?>
           <div class="svc-section svc-section--form">
             <div class="svc-form">
+              <?php if ($svc_form_title) : ?>
+                <h2 class="svc-form__title"><?php echo esc_html($svc_form_title); ?></h2>
+              <?php endif; ?>
+              <?php if ($svc_form_teaser) : ?>
+                <p class="svc-form__teaser"><?php echo esc_html($svc_form_teaser); ?></p>
+              <?php endif; ?>
               <?php echo do_shortcode('[ws_form id="' . esc_attr($form_id) . '"]'); ?>
             </div>
           </div>
