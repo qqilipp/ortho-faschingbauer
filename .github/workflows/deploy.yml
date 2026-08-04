@@ -1,0 +1,45 @@
+name: Deploy to GridPane
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy theme + plugin via scp
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
+          DEST="${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}"
+
+          scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts -r \
+            wp-content/themes/marfas24 \
+            "$DEST/themes/marfas24-new"
+
+          scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts -r \
+            wp-content/plugins/faschingbauer-medical-schema \
+            "$DEST/plugins/faschingbauer-medical-schema-new"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            set -e
+            BASE="${{ secrets.DEPLOY_PATH }}"
+            rm -rf "$BASE/themes/marfas24-old"
+            mv "$BASE/themes/marfas24" "$BASE/themes/marfas24-old"
+            mv "$BASE/themes/marfas24-new" "$BASE/themes/marfas24"
+
+            rm -rf "$BASE/plugins/faschingbauer-medical-schema-old"
+            mv "$BASE/plugins/faschingbauer-medical-schema" "$BASE/plugins/faschingbauer-medical-schema-old"
+            mv "$BASE/plugins/faschingbauer-medical-schema-new" "$BASE/plugins/faschingbauer-medical-schema"
+
+            rm -rf "$BASE/themes/marfas24-old" "$BASE/plugins/faschingbauer-medical-schema-old"
+          '
