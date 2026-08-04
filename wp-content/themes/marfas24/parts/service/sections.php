@@ -116,6 +116,17 @@ if ( ! function_exists('have_rows') || ! have_rows('service_content', $post_id) 
           </figure>
         <?php endif; ?>
 
+      <?php elseif ( get_row_layout() === 'form' ) :
+        $form_id = get_sub_field('form_id');
+      ?>
+        <?php if ($form_id) : ?>
+          <div class="svc-section svc-section--form">
+            <div class="svc-form">
+              <?php echo do_shortcode('[ws_form id="' . esc_attr($form_id) . '"]'); ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
       <?php elseif ( get_row_layout() === 'quote' ) :
         $quote  = get_sub_field('quote');
         $author = get_sub_field('author');
