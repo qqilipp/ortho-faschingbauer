@@ -7,6 +7,10 @@ on:
       - "wp-content/themes/marfas24/**"
       - "wp-content/plugins/faschingbauer-medical-schema/**"
 
+concurrency:
+  group: deploy-gridpane
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,6 +28,10 @@ jobs:
         run: |
           SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
           DEST="${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            rm -rf "${{ secrets.DEPLOY_PATH }}/themes/marfas24-new" "${{ secrets.DEPLOY_PATH }}/plugins/faschingbauer-medical-schema-new"
+          '
 
           scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts -r \
             wp-content/themes/marfas24 \

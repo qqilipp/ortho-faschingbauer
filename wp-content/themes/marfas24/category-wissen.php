@@ -286,7 +286,7 @@ $static_cards = [
                 <p class="wissen-card__excerpt"><?php echo esc_html($excerpt); ?></p>
               <?php endif; ?>
 
-              <a class="wissen-card__btn" href="<?php echo esc_url($url); ?>">Mehr »</a>
+              <a class="wissen-card__btn" href="<?php echo esc_url($url); ?>">Weiterlesen</a>
             </div>
           </article>
 
@@ -344,7 +344,7 @@ $static_cards = [
                   <p class="wissen-card__excerpt"><?php echo esc_html($excerpt); ?></p>
                 <?php endif; ?>
 
-                <a class="wissen-card__btn" href="<?php echo esc_url($card_url); ?>">Mehr »</a>
+                <a class="wissen-card__btn" href="<?php echo esc_url($card_url); ?>">Weiterlesen</a>
               </div>
             </article>
           <?php endforeach; ?>
