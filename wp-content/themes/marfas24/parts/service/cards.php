@@ -46,30 +46,24 @@ if (!function_exists('have_rows') || !have_rows('svc_cards')) {
           continue;
         }
       ?>
-        <article class="wissen-card">
+        <a class="wissen-card" href="<?php echo esc_url($url ?: '#'); ?>">
 
-          <a class="wissen-card__media" href="<?php echo esc_url($url ?: '#'); ?>">
-            <?php if ($img_url) : ?>
-              <img
-                class="wissen-card__img"
-                src="<?php echo esc_url($img_url); ?>"
-                alt="<?php echo esc_attr($img_alt); ?>"
-                loading="lazy"
-                decoding="async"
-              >
-            <?php else : ?>
-              <span class="wissen-card__img wissen-card__img--placeholder" aria-hidden="true"></span>
-            <?php endif; ?>
-          </a>
+          <?php if ($img_url) : ?>
+            <img
+              class="wissen-card__img"
+              src="<?php echo esc_url($img_url); ?>"
+              alt="<?php echo esc_attr($img_alt); ?>"
+              loading="lazy"
+              decoding="async"
+            >
+          <?php else : ?>
+            <span class="wissen-card__img wissen-card__img--placeholder" aria-hidden="true"></span>
+          <?php endif; ?>
 
           <div class="wissen-card__body">
 
             <?php if ($title) : ?>
-              <h2 class="wissen-card__title">
-                <a href="<?php echo esc_url($url ?: '#'); ?>">
-                  <?php echo esc_html($title); ?>
-                </a>
-              </h2>
+              <h2 class="wissen-card__title"><?php echo esc_html($title); ?></h2>
             <?php endif; ?>
 
             <?php if ($excerpt) : ?>
@@ -78,12 +72,8 @@ if (!function_exists('have_rows') || !have_rows('svc_cards')) {
               </p>
             <?php endif; ?>
 
-            <?php if ($url) : ?>
-              <a class="wissen-card__btn" href="<?php echo esc_url($url); ?>">Mehr »</a>
-            <?php endif; ?>
-
           </div>
-        </article>
+        </a>
 
       <?php endwhile; ?>
 
