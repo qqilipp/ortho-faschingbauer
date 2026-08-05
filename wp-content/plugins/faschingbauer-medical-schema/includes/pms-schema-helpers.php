@@ -353,3 +353,62 @@ function pms_print_jsonld(array $graph): void {
         '</script>' . "\n";
 }
 
+/**
+ * Build Review[] + AggregateRating from the "patientenbewertungen" ACF field
+ * (the same field/rows rendered visibly in the page's sidebar review carousel).
+ * Returns ['review' => [...], 'aggregateRating' => [...]] or [] if none.
+ */
+function pms_build_reviews_and_rating(int $post_id): array {
+    if (!function_exists('have_rows') || !have_rows('patientenbewertungen', $post_id)) {
+        return [];
+    }
+
+    $reviews = [];
+    $sum     = 0;
+
+    while (have_rows('patientenbewertungen', $post_id)) {
+        the_row();
+
+        $text   = trim((string) get_sub_field('text'));
+        $name   = trim((string) get_sub_field('name'));
+        $sterne = (int) get_sub_field('sterne');
+
+        if ($text === '') continue;
+
+        $rating = $sterne > 0 ? min(5, $sterne) : 5;
+        $sum   += $rating;
+
+        $reviews[] = [
+            '@type' => 'Review',
+            'reviewRating' => [
+                '@type'       => 'Rating',
+                'ratingValue' => $rating,
+                'bestRating'  => 5,
+                'worstRating' => 1,
+            ],
+            'author' => [
+                '@type' => 'Person',
+                'name'  => $name !== '' ? $name : 'Patient',
+            ],
+            'reviewBody' => $text,
+        ];
+    }
+
+    if (empty($reviews)) {
+        return [];
+    }
+
+    $count = count($reviews);
+
+    return [
+        'review' => $reviews,
+        'aggregateRating' => [
+            '@type'       => 'AggregateRating',
+            'ratingValue' => round($sum / $count, 1),
+            'reviewCount' => $count,
+            'bestRating'  => 5,
+            'worstRating' => 1,
+        ],
+    ];
+}
+
