@@ -52,6 +52,10 @@ add_action('wp_head', function () {
             '@id' => $physician_id
         ],
 
+        'reviewedBy' => [
+            '@id' => $physician_id
+        ],
+
         'publisher' => [
             '@id' => $base . '/#medicalbusiness'
         ],
@@ -71,7 +75,7 @@ add_action('wp_head', function () {
      */
 
     $graph[] = [
-        '@type' => 'WebPage',
+        '@type' => 'MedicalWebPage',
         '@id'   => $webpage_id,
         'url'   => $url,
         'name'  => $title,
@@ -84,7 +88,10 @@ add_action('wp_head', function () {
 
         'about' => [
             '@id' => $article_id
-        ]
+        ],
+
+        'reviewedBy'    => ['@id' => $physician_id],
+        'lastReviewed'  => get_the_modified_date('Y-m-d', $post_id),
     ];
 
     pms_print_jsonld($graph);
