@@ -51,7 +51,6 @@ get_header("custom");
       <!-- Meta -->
       <div class="svc-hero__intro" style="margin-bottom:18px;">
         <p style="margin:0; opacity:.75; font-size:13px;">
-          <?php echo esc_html($cat_name); ?> ·
           <?php echo esc_html($author_name); ?> ·
           <time datetime="<?php echo esc_attr($date_iso); ?>"><?php echo esc_html($date_hum); ?></time>
         </p>

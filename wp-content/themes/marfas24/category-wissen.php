@@ -278,7 +278,6 @@ $static_cards = [
               </h2>
 
               <div class="wissen-card__meta">
-                <?php echo esc_html($cat_name); ?> ·
                 <?php echo esc_html($author_name); ?> ·
                 <time datetime="<?php echo esc_attr($date_iso); ?>"><?php echo esc_html($date_hum); ?></time>
               </div>
