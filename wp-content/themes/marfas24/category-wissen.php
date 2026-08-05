@@ -166,15 +166,17 @@ $static_cards = [
   width: fit-content;
   align-items:center;
   justify-content:center;
-  background:#6a96a5;
-  color:#fff;
-  padding: 9px 14px;
+  background: transparent;
+  color: #6a96a5;
+  border: 1px solid #6a96a5;
+  padding: 8px 14px;
   border-radius: 10px;
   text-decoration:none;
   font-weight:600;
   font-size: 12px;
+  transition: background .15s ease, color .15s ease;
 }
-.wissen-card__btn:hover{ background:#5a8391; color:#fff; }
+.wissen-card__btn:hover{ background:#6a96a5; color:#fff; }
 
 /* Pagination */
 .wissen-pagination{
