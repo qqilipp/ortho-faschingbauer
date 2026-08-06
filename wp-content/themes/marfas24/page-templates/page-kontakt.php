@@ -44,7 +44,7 @@ $map_iframe = "<iframe
   loading='lazy'
   referrerpolicy='no-referrer-when-downgrade'></iframe>";
 
-$bottom_img_url = 'https://ortho-faschingbauer.qlp.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg';
+$bottom_img_url = 'https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg';
 ?>
 
 <style>

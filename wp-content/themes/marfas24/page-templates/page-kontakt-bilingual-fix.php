@@ -52,7 +52,7 @@ $map_iframe = "<iframe
 </iframe>";
 
 // нижняя картинка (как ты дал ссылку)
-$bottom_img_url = 'https://ortho-faschingbauer.qlp.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg';
+$bottom_img_url = 'https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg';
 ?>
 
 <style>
