@@ -95,6 +95,21 @@ get_header("custom");
         </div>
       </div>
 
+      <?php
+        // Rückruf-CTA: Formular je Sprache (4 = DE, 5 = EN)
+        $callback_lang = (defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE) ? strtolower(ICL_LANGUAGE_CODE) : 'de';
+        $callback_form_id = ($callback_lang === 'en') ? 5 : 4;
+        $callback_title = ($callback_lang === 'en') ? 'Prefer a callback?' : 'Lieber zurückgerufen werden?';
+        $callback_subtitle = ($callback_lang === 'en')
+          ? 'Leave your phone number briefly – we will call you back.'
+          : 'Hinterlassen Sie kurz Ihre Telefonnummer – wir rufen Sie zurück.';
+      ?>
+      <div class="blog-callbackbox">
+        <div class="blog-callbackbox__title"><?php echo esc_html($callback_title); ?></div>
+        <p class="blog-callbackbox__subtitle"><?php echo esc_html($callback_subtitle); ?></p>
+        <?php echo do_shortcode('[ws_form id="' . (int) $callback_form_id . '"]'); ?>
+      </div>
+
     </article>
   </div>
 </section>
