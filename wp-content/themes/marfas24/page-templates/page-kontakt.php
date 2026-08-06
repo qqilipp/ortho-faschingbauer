@@ -80,25 +80,20 @@ $bottom_img_url = 'https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-f
   margin: 0 auto;
   background:#f6f8f9;
   border:1px solid rgba(0,0,0,.08);
-  border-radius:14px;
-  padding:22px;
+  border-radius:28px;
+  padding:32px 36px;
 }
-.kontakt-form-title{margin:0 0 12px;font-size:18px;font-weight:700;}
+.kontakt-form-title{margin:0 0 12px;font-size:20px;font-weight:700;color:#6a96a5;letter-spacing:-0.02em;}
 .kontakt-form form{margin:0;}
-.kontakt-form input,
-.kontakt-form textarea,
-.kontakt-form select{
-  width:100%;
-  box-sizing:border-box;
-  border-radius:10px;
-}
-.kontakt-form textarea{min-height:120px;resize:vertical;}
-.kontakt-form button,
-.kontakt-form input[type="submit"]{
-  width:100%;
-  border-radius:12px;
-  padding:12px 14px;
-  font-weight:600;
+
+/* WS-Form-Styler-Variablen nur innerhalb dieser Box überschrieben (gleiche Optik wie die Rückrufbox in den Beiträgen) */
+.kontakt-form [data-wsf-style-id] {
+  --wsf-field-border-radius: 9px;
+  --wsf-field-border-color: #e1e1e1;
+  --wsf-field-border-color-hover: #e1e1e1;
+  --wsf-field-padding-vertical: 18px;
+  --wsf-field-padding-horizontal: 18px;
+  --wsf-field-button-font-weight: 700;
 }
 
 /* Bottom image */
@@ -109,7 +104,7 @@ $bottom_img_url = 'https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-f
 @media (max-width: 900px){
   .kontakt-grid{grid-template-columns:1fr!important;gap:18px!important;}
   .kontakt-map__frame iframe{height:320px;}
-  .kontakt-form-card{padding:18px;}
+  .kontakt-form-card{padding:24px 22px;border-radius:20px;}
 }
 </style>
 
