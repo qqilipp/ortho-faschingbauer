@@ -1,0 +1,48 @@
+name: Set WP_MEMORY_LIMIT on GridPane
+
+on:
+  workflow_dispatch:
+
+jobs:
+  set-memory-limit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Idempotently raise WP_MEMORY_LIMIT to 128M
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            set -e
+            WPCONFIG="$(readlink -f "${{ secrets.DEPLOY_PATH }}/../wp-config.php")"
+
+            if [ ! -f "$WPCONFIG" ]; then
+              echo "wp-config.php not found at: $WPCONFIG"
+              exit 1
+            fi
+
+            if grep -E "^[[:space:]]*define[[:space:]]*\(" "$WPCONFIG" | grep -q "WP_MEMORY_LIMIT"; then
+              echo "WP_MEMORY_LIMIT already defined in wp-config.php - skipping."
+              exit 0
+            fi
+
+            BACKUP="$WPCONFIG.bak-$(date +%Y%m%d%H%M%S)"
+            cp "$WPCONFIG" "$BACKUP"
+            echo "Backup created: $BACKUP"
+
+            sed -i "1a define(\"WP_MEMORY_LIMIT\", \"128M\");" "$WPCONFIG"
+
+            if ! php -l "$WPCONFIG" > /dev/null 2>&1; then
+              echo "Syntax check FAILED after edit - restoring backup."
+              cp "$BACKUP" "$WPCONFIG"
+              exit 1
+            fi
+
+            echo "WP_MEMORY_LIMIT set to 128M. Backup kept at $BACKUP"
+          '
