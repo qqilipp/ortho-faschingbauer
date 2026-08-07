@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="de-AT">
+<html <?php language_attributes(); ?> dir="ltr">
 <head>
 	<meta charset="UTF-8" />	
 	<?php get_template_part('parts/seo'); ?>
@@ -69,9 +69,7 @@
 		</div>
 	    	    
 	</header>
-	
-	<div id="headerpadding"></div>
-					
+
 	<?php if( get_field('info_show', 'option') ) {
 		get_template_part('parts/infobar'); } ?>
 		

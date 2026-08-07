@@ -9,8 +9,10 @@ if (!$lang) {
   $lang = 'de';
 }
 
-// Meta description
+// Meta description (skip if an SEO plugin like Rank Math already outputs one)
 add_action('wp_head', function () use ($lang) {
+  if (defined('RANK_MATH_VERSION')) return;
+
   $desc_de = 'Kontakt zur Ordination von Prof. DDr. Martin Faschingbauer in 1090 Wien: Ordinationszeiten, Adresse, Telefon und E-Mail. Terminvereinbarung nach Vereinbarung.';
   $desc_en = 'Contact the practice of Prof. DDr. Martin Faschingbauer in Vienna (1090): office hours, address, phone and email. Appointments by arrangement.';
 

@@ -75,8 +75,6 @@
 
   </header>
 
-  <div id="headerpadding"></div>
-
   <?php if (get_field('info_show', 'option')) {
     get_template_part('parts/infobar');
   } ?>

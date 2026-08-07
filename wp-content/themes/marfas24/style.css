@@ -369,17 +369,17 @@ pre {
 *************************************************/
 
 #header {
-	position: fixed;
+	position: sticky;
 	z-index: 30001;
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
-	
+
 	background: #fff;
 	padding-top:    30px;
 	padding-bottom: 30px;
-	
+
 	transition: all 500ms ease;
 }
 
@@ -413,10 +413,6 @@ pre {
 
 #nav {
 	
-}
-
-#headerpadding {
-	height: 110px;
 }
 
 
@@ -464,10 +460,6 @@ pre {
 .scroll2 #header {
 	padding-top:    20px;
 	padding-bottom: 20px;
-}
-
-.scroll1 #headerpadding {
-	
 }
 
 
@@ -843,8 +835,15 @@ img.alignnone {
 #formbox.active {
 	bottom: 0;
 	opacity: 1;
-	
+
 	transition: bottom 400ms ease, opacity 400ms ease 200ms;
+}
+
+/* Content-embedded ORF teaser image has no width/height attribute (lives in
+   post content, not theme markup) - reserve its aspect ratio to limit CLS. */
+.fb-orf__orf-logo {
+	aspect-ratio: 650 / 366;
+	height: auto;
 }
 
 #formbox .hideicon {
@@ -1703,10 +1702,6 @@ div.wpcf7-validation-errors {
 	.scroll2 #header {
 		padding-top:    15px;
 		padding-bottom: 15px;
-	}
-	
-	#headerpadding {
-		height: 80px;
 	}
 	
 	#logo,
