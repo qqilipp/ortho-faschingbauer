@@ -172,9 +172,9 @@
 					if( is_countable( $sliderrows ) ) {
 						$sliderrows = count( $sliderrows ); } ?>
 					<div class="slides<?php if( $sliderrows > 1 ) { ?> owl-theme owl-carousel owl-mainslider<?php } ?>">
-					<?php while( has_sub_field('bilder') ) { ?>
-					
-					  	<div>			    	
+					<?php $slide_index = 0; while( has_sub_field('bilder') ) { $slide_index++; ?>
+
+					  	<div>
 					    	<?php $sliderimgid 	= get_sub_field('bild');
 						    	if( $hoehe == 'low') {
 									$sliderimg 		= $sliderimgid['sizes']['sliderlow'];
@@ -202,6 +202,7 @@
 										src="<?php echo $sliderimg; ?>"
 										width="<?php echo esc_attr( $sliderimg_w ); ?>"
 										height="<?php echo esc_attr( $sliderimg_h ); ?>"
+										<?php if ( $slide_index === 1 ) { ?>fetchpriority="high"<?php } ?>
 										alt="<?php if( !empty( $slideralt ) ) { echo esc_html( $slideralt ); } ?>">
 					    		</picture>
 					    		
