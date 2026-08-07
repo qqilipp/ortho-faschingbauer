@@ -20,7 +20,7 @@ jobs:
 
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
             set -e
-            WPCONFIG="$(readlink -f "${{ secrets.DEPLOY_PATH }}/../wp-config.php")"
+            WPCONFIG="$(dirname "${{ secrets.DEPLOY_PATH }}")/wp-config.php"
 
             if [ ! -f "$WPCONFIG" ]; then
               echo "wp-config.php not found at: $WPCONFIG"

@@ -41,7 +41,7 @@ jobs:
 
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
             set -e
-            WPROOT="$(readlink -f "${{ secrets.DEPLOY_PATH }}/.." || true)"
+            WPROOT="$(dirname "${{ secrets.DEPLOY_PATH }}")"
 
             if [ -z "$WPROOT" ] || [ ! -f "$WPROOT/wp-config.php" ]; then
               echo "Could not resolve WordPress root (looked for wp-config.php under: $WPROOT)"
