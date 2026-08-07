@@ -26,8 +26,11 @@ if ($is_en) {
     $contact_url = home_url('/kontakt/');
 }
 
-// "Über mich" page has no English version yet — fall back to the German URL either way.
-$about_url = home_url('/ueber-mich/');
+if ($is_en) {
+    $about_url = home_url('/en/about/');
+} else {
+    $about_url = home_url('/ueber-mich/');
+}
 
 // Profile card strings
 $profile_name = 'Prof. DDr. M. Faschingbauer';
