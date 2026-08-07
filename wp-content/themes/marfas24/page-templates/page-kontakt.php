@@ -9,9 +9,12 @@ if (!$lang) {
   $lang = 'de';
 }
 
-// Meta description (skip if an SEO plugin like Rank Math already outputs one)
+// Meta description (skip only if Rank Math already has one set for THIS page -
+// checking for the plugin being merely active isn't enough: Rank Math is active
+// site-wide but does not have a description for every language of every page,
+// and skipping unconditionally left en/contact/ with no description at all).
 add_action('wp_head', function () use ($lang) {
-  if (defined('RANK_MATH_VERSION')) return;
+  if (defined('RANK_MATH_VERSION') && get_post_meta(get_the_ID(), 'rank_math_description', true)) return;
 
   $desc_de = 'Kontakt zur Ordination von Prof. DDr. Martin Faschingbauer in 1090 Wien: Ordinationszeiten, Adresse, Telefon und E-Mail. Terminvereinbarung nach Vereinbarung.';
   $desc_en = 'Contact the practice of Prof. DDr. Martin Faschingbauer in Vienna (1090): office hours, address, phone and email. Appointments by arrangement.';
