@@ -1,0 +1,103 @@
+name: Append Additional CSS rule (Customizer)
+
+on:
+  workflow_dispatch:
+    inputs:
+      css_marker:
+        description: "Short unique id for this change (used to skip re-adding it on a second run)"
+        required: true
+      css_rule:
+        description: "Full CSS to append, e.g. .foo { margin-top: 24px; }"
+        required: true
+
+jobs:
+  append-css:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Write snippet files
+        env:
+          CSS_MARKER: ${{ inputs.css_marker }}
+          CSS_RULE: ${{ inputs.css_rule }}
+        run: |
+          printf '/* KOSMAS: %s (added via automation) */\n' "$CSS_MARKER" > marker.txt
+          printf '%s\n' "$CSS_RULE" > rule.txt
+
+      - name: Upload snippet to server
+        run: |
+          scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts \
+            marker.txt rule.txt \
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/"
+
+      - name: Append to Additional CSS via WP-CLI (idempotent)
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            set -e
+            WPROOT="$(readlink -f "${{ secrets.DEPLOY_PATH }}/.." || true)"
+
+            if [ -z "$WPROOT" ] || [ ! -f "$WPROOT/wp-config.php" ]; then
+              echo "Could not resolve WordPress root (looked for wp-config.php under: $WPROOT)"
+              exit 1
+            fi
+
+            if ! command -v wp >/dev/null 2>&1; then
+              echo "wp-cli not found on server"
+              exit 1
+            fi
+
+            MARKER="$(cat /tmp/marker.txt)"
+
+            CSS_IDS="$(wp post list --post_type=custom_css --field=ID --path="$WPROOT")"
+            COUNT="$(echo "$CSS_IDS" | grep -c .)"
+
+            if [ "$COUNT" -eq 0 ]; then
+              echo "No custom_css post found on this site"
+              exit 1
+            fi
+
+            if [ "$COUNT" -gt 1 ]; then
+              echo "More than one custom_css post found - using the first, verify manually:"
+              echo "$CSS_IDS"
+            fi
+
+            CSS_ID="$(echo "$CSS_IDS" | head -n1)"
+
+            wp post get "$CSS_ID" --field=post_content --path="$WPROOT" > /tmp/current.css
+
+            if grep -qF "$MARKER" /tmp/current.css; then
+              echo "Marker already present in custom_css post $CSS_ID - skipping."
+              rm -f /tmp/marker.txt /tmp/rule.txt /tmp/current.css
+              exit 0
+            fi
+
+            BACKUP="/tmp/custom-css-backup-$(date +%Y%m%d%H%M%S).css"
+            cp /tmp/current.css "$BACKUP"
+
+            cp /tmp/current.css /tmp/new.css
+            {
+              echo ""
+              echo ""
+              cat /tmp/marker.txt
+              cat /tmp/rule.txt
+            } >> /tmp/new.css
+
+            wp post update "$CSS_ID" --post_content="$(cat /tmp/new.css)" --path="$WPROOT"
+
+            if wp post get "$CSS_ID" --field=post_content --path="$WPROOT" | grep -qF "$MARKER"; then
+              echo "Applied to custom_css post $CSS_ID. Backup at $BACKUP"
+              echo "Rollback: wp post update $CSS_ID --path=$WPROOT --post_content=\"\$(cat $BACKUP)\""
+            else
+              echo "Verification failed after update - check manually. Backup at $BACKUP"
+              exit 1
+            fi
+
+            rm -f /tmp/marker.txt /tmp/rule.txt /tmp/current.css /tmp/new.css
+          '
