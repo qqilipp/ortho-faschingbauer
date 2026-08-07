@@ -28,16 +28,17 @@ jobs:
         run: |
           scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts \
             wp_args.txt \
-            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/wp_args.txt"
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/wp_args-${{ github.run_id }}.txt"
 
       - name: Run wp-cli
         run: |
           SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
+          REMOTE_ARGS_FILE="/tmp/wp_args-${{ github.run_id }}.txt"
 
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
             set -e
             WPROOT="$(dirname "${{ secrets.DEPLOY_PATH }}")"
-            ARGS="$(cat /tmp/wp_args.txt)"
+            ARGS="$(cat '"$REMOTE_ARGS_FILE"')"
 
             if ! command -v wp >/dev/null 2>&1; then
               echo "wp-cli not found on server"
@@ -46,5 +47,5 @@ jobs:
 
             eval "wp $ARGS --path=\"$WPROOT\""
 
-            rm -f /tmp/wp_args.txt
+            rm -f '"$REMOTE_ARGS_FILE"'
           '
