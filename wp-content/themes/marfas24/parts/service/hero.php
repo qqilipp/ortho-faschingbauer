@@ -104,6 +104,8 @@ $txt_primary_cta = $is_en ? 'Book a consultation' : 'Beratungsgespräch vereinba
           <img
             class="svc-hero__visual-img"
             src="<?php echo esc_url($hero_image['url']); ?>"
+            width="<?php echo esc_attr($hero_image['width']); ?>"
+            height="<?php echo esc_attr($hero_image['height']); ?>"
             alt="<?php echo esc_attr(!empty($hero_image['alt']) ? $hero_image['alt'] : $title); ?>"
             loading="lazy"
           >

@@ -209,6 +209,8 @@ $bottom_img_url = 'https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-f
     <div class="kontakt-container">
       <img class="kontakt-bottom__img"
            src="<?php echo esc_url($bottom_img_url); ?>"
+           width="1981"
+           height="1321"
            alt="<?php echo ($lang === 'en')
              ? 'Dr. Martin Faschingbauer – artificial hip joint'
              : 'Dr. Martin Faschingbauer – künstliches Hüftgelenk'; ?>"

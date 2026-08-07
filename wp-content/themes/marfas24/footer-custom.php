@@ -68,7 +68,7 @@ $footer_links = [
 	<div class="outer">
 		<div class="wrap relative">
 			<div class="padding"></div>
-			<a class="hideform hideicon"></a>
+			<button type="button" class="hideform hideicon" aria-label="<?php echo esc_attr( $tr('Formular schließen', 'Close form') ); ?>"></button>
 			<div class="clear"></div>
 			<div class="col-xs-1 col-s-1 col-sm-1 col-m-1 col-ml-2 col-l-2 col-xl-3"></div>
 			<div class="col-xs-10 col-s-10 col-sm-10 col-m-10 col-ml-8 col-l-8 col-xl-6">

@@ -80,6 +80,8 @@ get_header("custom");
         <img
           class="blog-authorbox__photo"
           src="<?php echo esc_url(site_url('/wp-content/uploads/martin-faschinbauer-kuehl-03.png')); ?>"
+          width="250"
+          height="250"
           alt="Prof. DDr. M. Faschingbauer"
           loading="lazy"
         >

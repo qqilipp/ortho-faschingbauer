@@ -110,6 +110,8 @@ if ( ! function_exists('have_rows') || ! have_rows('service_content', $post_id) 
           <figure class="svc-section svc-section--image">
             <img
               src="<?php echo esc_url($img['url']); ?>"
+              width="<?php echo esc_attr($img['width']); ?>"
+              height="<?php echo esc_attr($img['height']); ?>"
               alt="<?php echo esc_attr(!empty($img['alt']) ? $img['alt'] : get_the_title($post_id)); ?>"
               loading="lazy"
             >

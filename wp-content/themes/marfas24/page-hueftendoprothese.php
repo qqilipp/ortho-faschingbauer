@@ -1136,6 +1136,8 @@ if (
   <section class="lp-hero-image">
     <img
       src="https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-faschingbauer-kuenstliches-hueftgelenk.jpg"
+      width="1981"
+      height="1321"
       alt="Prof. DDr. Martin Faschingbauer künstliches Hüftgelenk"
     >
   </section>
@@ -1237,7 +1239,7 @@ if (
 
     <div class="lp-expert-card-wrap">
       <div class="lp-expert-photo">
-        <img src="https://ortho-faschingbauer.at/wp-content/uploads/martin-faschinbauer-kuehl-03.png" alt="Prof. DDr. M. Faschingbauer">
+        <img src="https://ortho-faschingbauer.at/wp-content/uploads/martin-faschinbauer-kuehl-03.png" width="250" height="250" alt="Prof. DDr. M. Faschingbauer">
       </div>
 
       <div class="lp-expert-card">
@@ -1269,35 +1271,35 @@ if (
     <div class="lp-symptom-grid">
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="">
         </span>
         <span>Schmerzen in <strong>Leiste, Oberschenkel</strong> oder <strong>Knie</strong></span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="">
         </span>
         <span>Schwierigkeiten beim <strong>Gehen</strong> oder <strong>Treppensteigen</strong></span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="">
         </span>
         <span><strong>Steifigkeit am Morgen</strong></span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/podiatry_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/podiatry_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="">
         </span>
         <span><strong>Probleme</strong> beim <strong>Anziehen</strong> von Socken oder Schuhe</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/assist_walker_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/assist_walker_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="14" height="19" alt="">
         </span>
         <span><strong>Hinken oder Schonhaltung</strong></span>
       </div>

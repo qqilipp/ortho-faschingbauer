@@ -85,6 +85,8 @@ $svc_is_about_page = is_page('ueber-mich');
       <div class="svc-profile__avatar">
         <img
           src="<?php echo esc_url(site_url('/wp-content/uploads/martin-faschinbauer-kuehl-03.png')); ?>"
+          width="250"
+          height="250"
           alt="<?php echo esc_attr($profile_name); ?>"
           loading="lazy"
         >

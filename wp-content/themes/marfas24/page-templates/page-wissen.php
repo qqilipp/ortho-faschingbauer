@@ -51,7 +51,7 @@ get_header("custom");
           $img_html = '';
           if (is_array($image) && !empty($image['url'])) {
             $alt = !empty($image['alt']) ? $image['alt'] : ($title ?: 'Wissen');
-            $img_html = '<img class="wissen-card__img" loading="lazy" src="' . esc_url($image['url']) . '" alt="' . esc_attr($alt) . '">';
+            $img_html = '<img class="wissen-card__img" loading="lazy" src="' . esc_url($image['url']) . '" width="' . esc_attr($image['width']) . '" height="' . esc_attr($image['height']) . '" alt="' . esc_attr($alt) . '">';
           }
 
           $target_attr = $target ? ' target="' . esc_attr($target) . '"' : '';

@@ -5,7 +5,7 @@ Template Name: LP Knieendoprothese
 
 /* $lp_form_recipient = get_option('admin_email'); */ 
 // Test recipient. Replace with the client's email after testing.
-$lp_form_recipient = 'pv@kosmas.at'; // Test recipient
+$lp_form_recipient = 'praxis@ortho-faschingbauer.at';
 $lp_form_status = '';
 $lp_form_message = '';
 
@@ -1173,6 +1173,8 @@ if (
   <section class="lp-hero-image">
     <img
       src="https://ortho-faschingbauer.at/wp-content/uploads/dr-martin-faschingbauer-7823-lowres.jpg"
+      width="1981"
+      height="1321"
       alt="Prof. DDr. Martin Faschingbauer künstliches Kniegelenk"
     >
   </section>
@@ -1331,7 +1333,7 @@ if (
 
     <div class="lp-expert-card-wrap">
       <div class="lp-expert-photo">
-        <img src="https://ortho-faschingbauer.at/wp-content/uploads/martin-faschinbauer-kuehl-03.png" alt="Prof. DDr. M. Faschingbauer">
+        <img src="https://ortho-faschingbauer.at/wp-content/uploads/martin-faschinbauer-kuehl-03.png" width="250" height="250" alt="Prof. DDr. M. Faschingbauer">
       </div>
 
       <div class="lp-expert-card">
@@ -1363,35 +1365,35 @@ if (
     <div class="lp-symptom-grid">
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="Anlaufschmerz">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Anlaufschmerz">
         </span>
         <span><strong>Anlaufschmerz</strong></span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="Belastungsschmerz">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Belastungsschmerz">
         </span>
         <span><strong>Belastungsschmerz</strong> beim Treppensteigen oder Gehen</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="Instabilität">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Instabilität">
         </span>
         <span><strong>Instabilität</strong> und „Wegknicken“</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/femur_alt_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="Sichtbare Fehlstellungen">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/femur_alt_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Sichtbare Fehlstellungen">
         </span>
         <span><strong>Sichtbare Fehlstellungen</strong> durch den einseitigen Abrieb des Knorpels</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" alt="Regelmäßige Schwellungen">
+          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Regelmäßige Schwellungen">
         </span>
         <span><strong>Regelmäßige Schwellungen</strong> und Entzündungen</span>
       </div>

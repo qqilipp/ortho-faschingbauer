@@ -16,21 +16,27 @@
 					    	<?php $sliderimgid 	= get_sub_field('bild');
 								if( $hoehe == 'low') {
 									$sliderimg 		= $sliderimgid['sizes']['sliderlow'];
+									$sliderimg_w	= $sliderimgid['sizes']['sliderlow-width'];
+									$sliderimg_h	= $sliderimgid['sizes']['sliderlow-height'];
 								} else {
-									$sliderimg 		= $sliderimgid['sizes']['slider'];	
+									$sliderimg 		= $sliderimgid['sizes']['slider'];
+									$sliderimg_w	= $sliderimgid['sizes']['slider-width'];
+									$sliderimg_h	= $sliderimgid['sizes']['slider-height'];
 								}
 								$sliderimg_s 	= $sliderimgid['sizes']['slider_s'];    // slider_s, slider_s_high
 								$slidertitel 	= get_sub_field('titel');
 								$slidertext 	= get_sub_field('text');
 								$sliderlink 	= get_sub_field('link'); ?>
-					    	
-					    	<div class="slide">					    		
+
+					    	<div class="slide">
 					    		<picture>
-									<source 
-										media="(max-width: 480px)" 
-										srcset="<?php echo $sliderimg_s; ?>">						
-									<img 
-										src="<?php echo $sliderimg; ?>" 
+									<source
+										media="(max-width: 480px)"
+										srcset="<?php echo $sliderimg_s; ?>">
+									<img
+										src="<?php echo $sliderimg; ?>"
+										width="<?php echo esc_attr( $sliderimg_w ); ?>"
+										height="<?php echo esc_attr( $sliderimg_h ); ?>"
 										alt="<?php if( !empty( $slideralt ) ) { echo $slideralt; } else { echo $sliderimgid['alt']; } ?>">
 					    		</picture>
 					    		

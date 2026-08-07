@@ -32,11 +32,15 @@ if ( ! function_exists('have_rows') || ! have_rows('svc_cards', $svc_schwerpunkt
         $url = $link;
       }
 
-      $img_url = '';
-      $img_alt = $title;
+      $img_url    = '';
+      $img_alt    = $title;
+      $img_width  = '';
+      $img_height = '';
       if (is_array($image)) {
         if (!empty($image['url'])) $img_url = $image['url'];
         if (!empty($image['alt'])) $img_alt = $image['alt'];
+        if (!empty($image['width'])) $img_width = $image['width'];
+        if (!empty($image['height'])) $img_height = $image['height'];
       } elseif (is_string($image)) {
         $img_url = $image;
       }
@@ -46,7 +50,7 @@ if ( ! function_exists('have_rows') || ! have_rows('svc_cards', $svc_schwerpunkt
       <a class="svc-linklist__item" href="<?php echo esc_url($url ?: '#'); ?>">
         <?php if ($img_url) : ?>
           <span class="svc-linklist__thumb">
-            <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>" loading="lazy">
+            <img src="<?php echo esc_url($img_url); ?>" <?php if ($img_width && $img_height) : ?>width="<?php echo esc_attr($img_width); ?>" height="<?php echo esc_attr($img_height); ?>" <?php endif; ?>alt="<?php echo esc_attr($img_alt); ?>" loading="lazy">
           </span>
         <?php endif; ?>
         <span class="svc-linklist__body">
