@@ -20,10 +20,15 @@ jobs:
 
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
             set -e
-            WPCONFIG="$(dirname "${{ secrets.DEPLOY_PATH }}")/wp-config.php"
+            WPROOT="$(dirname "${{ secrets.DEPLOY_PATH }}")"
+            WPROOT_PARENT="$(dirname "$WPROOT")"
 
-            if [ ! -f "$WPCONFIG" ]; then
-              echo "wp-config.php not found at: $WPCONFIG"
+            if [ -f "$WPROOT/wp-config.php" ]; then
+              WPCONFIG="$WPROOT/wp-config.php"
+            elif [ -f "$WPROOT_PARENT/wp-config.php" ]; then
+              WPCONFIG="$WPROOT_PARENT/wp-config.php"
+            else
+              echo "wp-config.php not found under $WPROOT or $WPROOT_PARENT"
               exit 1
             fi
 

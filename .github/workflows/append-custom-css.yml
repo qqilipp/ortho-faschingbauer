@@ -42,9 +42,10 @@ jobs:
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
             set -e
             WPROOT="$(dirname "${{ secrets.DEPLOY_PATH }}")"
+            WPROOT_PARENT="$(dirname "$WPROOT")"
 
-            if [ -z "$WPROOT" ] || [ ! -f "$WPROOT/wp-config.php" ]; then
-              echo "Could not resolve WordPress root (looked for wp-config.php under: $WPROOT)"
+            if [ ! -f "$WPROOT/wp-config.php" ] && [ ! -f "$WPROOT_PARENT/wp-config.php" ]; then
+              echo "Could not find wp-config.php under $WPROOT or $WPROOT_PARENT"
               exit 1
             fi
 
