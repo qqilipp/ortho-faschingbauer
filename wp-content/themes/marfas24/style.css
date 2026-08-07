@@ -839,13 +839,6 @@ img.alignnone {
 	transition: bottom 400ms ease, opacity 400ms ease 200ms;
 }
 
-/* Content-embedded ORF teaser image has no width/height attribute (lives in
-   post content, not theme markup) - reserve its aspect ratio to limit CLS. */
-.fb-orf__orf-logo {
-	aspect-ratio: 650 / 366;
-	height: auto;
-}
-
 #formbox .hideicon {
 	display: block;
 	cursor: pointer;
