@@ -37,7 +37,7 @@ jobs:
               exit 0
             fi
 
-            BACKUP="$WPCONFIG.bak-$(date +%Y%m%d%H%M%S)"
+            BACKUP="$WPCONFIG.bak-$$-$RANDOM"
             cp "$WPCONFIG" "$BACKUP"
             echo "Backup created: $BACKUP"
 

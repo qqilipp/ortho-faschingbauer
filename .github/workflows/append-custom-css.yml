@@ -79,7 +79,7 @@ jobs:
               exit 0
             fi
 
-            BACKUP="/tmp/custom-css-backup-$(date +%Y%m%d%H%M%S).css"
+            BACKUP="/tmp/custom-css-backup-$$-$RANDOM.css"
             cp /tmp/current.css "$BACKUP"
 
             cp /tmp/current.css /tmp/new.css
