@@ -34,8 +34,12 @@ add_action('wp_head', function () {
     // Profile photo lives in the ACF field "profil_foto", not the WP featured image
     $image_url = '';
     if (function_exists('get_field')) {
-        $photo_id = (int) get_field('profil_foto', $post_id);
-        if ($photo_id) $image_url = (string) wp_get_attachment_url($photo_id);
+        $photo = get_field('profil_foto', $post_id);
+        if (is_array($photo) && !empty($photo['url'])) {
+            $image_url = (string) $photo['url'];
+        } elseif (is_numeric($photo) && (int) $photo > 0) {
+            $image_url = (string) wp_get_attachment_url((int) $photo);
+        }
     }
 
     $description = '';
