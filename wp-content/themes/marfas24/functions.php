@@ -107,6 +107,7 @@ require_once get_template_directory() . '/functions/backup.php';
 
 require_once get_template_directory() . '/functions/custom_posttype.php';
 // require_once get_template_directory() . '/functions/custom_taxonomy.php';
+require_once get_template_directory() . '/functions/cpt-netzwerk.php';
 
 require_once get_template_directory() . '/functions/activate.php';
 

@@ -16,6 +16,7 @@ get_header("custom");
     </div>
 
     <?php get_template_part('parts/service/cards'); ?>
+    <?php get_template_part('parts/service/netzwerk'); ?>
     <?php get_template_part('parts/service/cta'); ?>
   <?php endwhile; endif; ?>
 </main>
