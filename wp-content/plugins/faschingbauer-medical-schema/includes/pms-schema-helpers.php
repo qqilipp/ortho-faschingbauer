@@ -10,6 +10,7 @@ if (!defined('PMS_WISSEN_DE'))       define('PMS_WISSEN_DE', 13);
 if (!defined('PMS_BESCHWERDEN_DE'))  define('PMS_BESCHWERDEN_DE', 1337);
 if (!defined('PMS_BEHANDLUNGEN_DE')) define('PMS_BEHANDLUNGEN_DE', 1372);
 if (!defined('PMS_UEBERMICH_DE'))    define('PMS_UEBERMICH_DE', 1408);
+if (!defined('PMS_KOOPERATIONEN_DE')) define('PMS_KOOPERATIONEN_DE', 2146);
 
 /**
  * Base URL helpers
