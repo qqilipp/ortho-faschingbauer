@@ -123,6 +123,7 @@ add_action('wp_head', function () {
 
         'sameAs' => [
             'https://pubmed.ncbi.nlm.nih.gov/?term=faschingbauer+m+%5Bau%5D&sort=date',
+            'https://www.linkedin.com/in/martin-faschingbauer-8b89373b0/',
         ],
 
         'subjectOf' => [
