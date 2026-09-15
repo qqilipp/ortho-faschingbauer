@@ -16,6 +16,7 @@ add_action('wp_head', function () {
 
     $contact    = pms_get_contact_data();
     $base_graph = pms_build_base_graph($contact);
+    [$website_node, $medicalbusiness_node, $physician_node] = $base_graph;
 
     $base  = pms_get_site_base();
     $url   = get_permalink($post_id);
@@ -49,7 +50,9 @@ add_action('wp_head', function () {
         'dateModified'  => get_the_modified_date('Y-m-d', $post_id),
 
         'author' => [
-            '@id' => $physician_id
+            '@id'   => $physician_id,
+            '@type' => $physician_node['@type'] ?? ['Person', 'Physician'],
+            'name'  => $physician_node['name']  ?? '',
         ],
 
         'reviewedBy' => [
@@ -57,7 +60,9 @@ add_action('wp_head', function () {
         ],
 
         'publisher' => [
-            '@id' => $base . '/#medicalbusiness'
+            '@id'   => $base . '/#medicalbusiness',
+            '@type' => $medicalbusiness_node['@type'] ?? 'MedicalBusiness',
+            'name'  => $medicalbusiness_node['name']  ?? '',
         ],
     ];
 
