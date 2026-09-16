@@ -40,9 +40,6 @@ $reviews = [
   <div class="outer">
     <div class="wrap">
 
-      <div class="padding"></div>
-      <div class="padding"></div>
-
       <div class="col-xs-12 col-s-12 col-sm-12 col-m-12 col-ml-12 col-l-12 col-xl-12">
         <h3 class="sectiontitle textcenter">Das sagen unsere Patient:innen</h3>
         <div class="padding"></div>
