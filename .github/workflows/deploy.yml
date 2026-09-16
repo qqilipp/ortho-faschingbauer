@@ -60,5 +60,23 @@ jobs:
         run: |
           SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
 
-          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" \
-            "/usr/bin/redis-cli -p 6378 -a '${{ secrets.REDIS_PAGECACHE_PASS }}' -n 7 FLUSHDB"
+          cat > purge-cache.php <<'PHPEOF'
+          <?php
+          $r = new Redis();
+          $r->connect('127.0.0.1', 6378);
+          $r->auth(getenv('REDIS_PAGECACHE_PASS'));
+          $r->select(7);
+          $r->flushDB();
+          echo 'Purged' . PHP_EOL;
+          PHPEOF
+
+          scp -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts \
+            purge-cache.php \
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/purge-cache-${{ github.run_id }}.php"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" '
+            set -e
+            WPROOT="$(dirname "${{ secrets.DEPLOY_PATH }}")"
+            REDIS_PAGECACHE_PASS="${{ secrets.REDIS_PAGECACHE_PASS }}" wp eval-file "/tmp/purge-cache-${{ github.run_id }}.php" --path="$WPROOT"
+            rm -f "/tmp/purge-cache-${{ github.run_id }}.php"
+          '
