@@ -708,9 +708,9 @@
 		
 	<?php unset( $lastbg );
 		$lastbg = $thisbg; ?>
-		
-		
-		
+
+	<?php if ( is_front_page() ) { get_template_part('parts/home-reviews'); } ?>
+
 <?php } // FAQ
 	elseif( get_row_layout() == 'faq' ) { ?>
 	

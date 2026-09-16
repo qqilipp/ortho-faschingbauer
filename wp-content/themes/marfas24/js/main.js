@@ -203,10 +203,26 @@ $(document).ready(function () {
 		animateOut: 		'fadeOut',
 		loop:				true,
 		autoplayTimeout:	4000,
-		autoplayHoverPause:	false		
+		autoplayHoverPause:	false
 	});
-	
-	
+
+	// REZENSIONEN CAROUSEL (Startseite)
+	$('.reviews-carousel').owlCarousel({
+		items:				2,
+		margin:				30,
+		autoplay:			true,
+		autoplayTimeout:	7000,
+		autoplayHoverPause:	true,
+		loop:				true,
+		nav:				false,
+		dots:				true,
+		responsive: {
+			0:   { items: 1 },
+			768: { items: 2 }
+		}
+	});
+
+
 	// WAYPOINTS	
 	// Basic Waypoint by ID
 	
