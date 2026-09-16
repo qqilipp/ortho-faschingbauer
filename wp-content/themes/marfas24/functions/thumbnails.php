@@ -21,5 +21,5 @@
 	//	add_image_size('portrait_s', 	 840, 1120, true);
 	
 	
-	add_filter('jpeg_quality', function($arg) { return 100; } );
+	add_filter('jpeg_quality', function($arg) { return 85; } );
 ?>
