@@ -227,14 +227,8 @@ add_filter('acf/location/rule_values/page_template', function ($choices) {
   return $choices;
 });
 
-/**
- * Frontend scripts: jquery + superfish + waypoint + owl-carousel + main.js
- * Properly enqueued with dependencies so WordPress guarantees load order
- * (fixes main.js previously relying on a hardcoded, duplicate jQuery 2.0.0
- * copy loaded via raw <script> tags in footer-custom.php / index.php).
- * "toggle" and "inview" were dropped: neither has any matching element in
- * the current markup (.js-acc_item / .inview don't exist anywhere live).
- */
+/*
+// Frontend scripts (старое меню) — отключено, потому что скрипты подключаются вручную в footer.php
 add_action('wp_enqueue_scripts', function () {
 
   wp_enqueue_script('jquery');
@@ -248,8 +242,27 @@ add_action('wp_enqueue_scripts', function () {
   );
 
   wp_enqueue_script(
+    'toggle',
+    get_template_directory_uri() . '/js/toggle.js',
+    array('jquery'),
+    null,
+    true
+  );
+
+  $main_path = get_template_directory() . '/js/main.js';
+  $main_ver  = file_exists($main_path) ? filemtime($main_path) : null;
+
+  wp_enqueue_script(
     'waypoint',
     get_template_directory_uri() . '/js/waypoint.js',
+    array('jquery'),
+    null,
+    true
+  );
+
+  wp_enqueue_script(
+    'inview',
+    get_template_directory_uri() . '/js/inview.js',
     array('jquery'),
     null,
     true
@@ -263,18 +276,16 @@ add_action('wp_enqueue_scripts', function () {
     true
   );
 
-  $main_path = get_template_directory() . '/js/main.js';
-  $main_ver  = file_exists($main_path) ? filemtime($main_path) : null;
-
   wp_enqueue_script(
     'theme-main',
     get_template_directory_uri() . '/js/main.js',
-    array('jquery', 'superfish', 'waypoint', 'owl-carousel'),
+    array('jquery', 'superfish', 'toggle', 'waypoint', 'inview', 'owl-carousel'),
     $main_ver,
     true
   );
 
 }, 20);
+*/
 
 /**
  * Раньше было так (НЕПРАВИЛЬНО: вызов enqueue вне хука), оставляю как комментарий:

@@ -321,6 +321,14 @@
 
 <div id="scroll0"></div><div id="scroll1"></div><div id="scroll2"></div>
 
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/toggle.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/superfish.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/waypoint.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/inview.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/owl.carousel.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/main.js<?php echo '?' . filemtime( get_stylesheet_directory() . '/js/main.js'); ?>"></script>
+
 <?php wp_footer(); ?>
 </body>
 </html>

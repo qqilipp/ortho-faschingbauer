@@ -233,7 +233,7 @@ $(document).ready(function () {
 	
 });
 
-$(window).on('load', function() {
+$(window).load(function() {
 	equalheight('.heights .height');
 	equalheight('.teasers .teaser');
 });
