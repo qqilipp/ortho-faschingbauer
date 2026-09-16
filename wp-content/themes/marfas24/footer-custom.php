@@ -42,12 +42,6 @@ $footer_links = [
     'path_en' => '/en/treatments/',
   ],
   [
-    'de' => 'Kooperationen & Netzwerk',
-    'en' => 'Network', // TODO: EN-Übersetzung der Seite fehlt noch, path_en zeigt vorerst auf die DE-Seite
-    'path_de' => '/kooperationen/',
-    'path_en' => '/kooperationen/',
-  ],
-  [
     'de' => 'Kontakt',
     'en' => 'Contact',
     'path_de' => '/kontakt/',
