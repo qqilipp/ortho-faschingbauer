@@ -6,6 +6,7 @@ on:
     paths:
       - "wp-content/themes/marfas24/**"
       - "wp-content/plugins/faschingbauer-medical-schema/**"
+  workflow_dispatch:
 
 concurrency:
   group: deploy-gridpane
@@ -54,3 +55,10 @@ jobs:
 
             rm -rf "$BASE/themes/marfas24-old" "$BASE/plugins/faschingbauer-medical-schema-old"
           '
+
+      - name: Purge Redis page cache
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
+
+          $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" \
+            "redis-cli -p 6378 -a '${{ secrets.REDIS_PAGECACHE_PASS }}' -n 7 FLUSHDB"
