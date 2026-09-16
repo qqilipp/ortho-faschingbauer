@@ -61,4 +61,4 @@ jobs:
           SSH="ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts"
 
           $SSH "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" \
-            "redis-cli -p 6378 -a '${{ secrets.REDIS_PAGECACHE_PASS }}' -n 7 FLUSHDB"
+            "/usr/bin/redis-cli -p 6378 -a '${{ secrets.REDIS_PAGECACHE_PASS }}' -n 7 FLUSHDB"
