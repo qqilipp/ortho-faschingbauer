@@ -129,6 +129,41 @@ if (!defined('ICL_DONT_LOAD_LANGUAGE_SELECTOR_CSS')) {
 add_filter('use_block_editor_for_post', '__return_false', 10);
 
 /**
+ * Base CSS: parallel-loadable stylesheets instead of an @import chain in
+ * style.css (was fully render-blocking - the browser can't discover/fetch
+ * these in parallel until style.css itself is downloaded and parsed).
+ * Order preserved exactly so cascade/specificity behaves the same as before;
+ * style.css depends on all of them so it always prints last.
+ */
+add_action('wp_enqueue_scripts', function () {
+
+  $css_dir = get_template_directory() . '/css/';
+  $css_uri = get_template_directory_uri() . '/css/';
+
+  $partials = [
+    'marfas24-0-reset'       => '0_reset.css',
+    'marfas24-0-basic'       => '0_basic.css',
+    'marfas24-0-icons'       => '0_icons.css',
+    'marfas24-grid'          => 'grid.css',
+    'marfas24-nav-sf'        => 'nav_sf.css',
+    'marfas24-toggle'        => 'toggle.css',
+    'marfas24-owl-carousel'  => 'owl.carousel.min.css',
+    'marfas24-owl-theme'     => 'owl.theme.default.min.css',
+  ];
+
+  $deps = [];
+  foreach ($partials as $handle => $file) {
+    $path = $css_dir . $file;
+    wp_enqueue_style($handle, $css_uri . $file, [], file_exists($path) ? filemtime($path) : null);
+    $deps[] = $handle;
+  }
+
+  $style_path = get_stylesheet_directory() . '/style.css';
+  wp_enqueue_style('marfas24-style', get_stylesheet_uri(), $deps, file_exists($style_path) ? filemtime($style_path) : null);
+
+}, 5);
+
+/**
  * Remove Gutenberg CSS on frontend
  */
 function tigris_remove_wp_block_library_css() {

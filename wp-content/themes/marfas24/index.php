@@ -7,8 +7,6 @@
 	<meta name="robots"	  content="noodp" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); echo '?' . filemtime( get_stylesheet_directory() . '/style.css'); ?>" />
-	
 	<link rel="apple-touch-icon" sizes="180x180" 	href="https://www.ortho-faschingbauer.at/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="https://www.ortho-faschingbauer.at/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="https://www.ortho-faschingbauer.at/favicon-16x16.png">
