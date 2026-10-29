@@ -573,11 +573,12 @@ if (
       transform: translateY(-50%);
     }
 
-    .lp-page .lp-symptom-icon img {
+    .lp-page .lp-symptom-icon svg {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: contain;
+      fill: currentColor;
     }
 
     .lp-page .lp-symptom-card strong {
@@ -1346,35 +1347,35 @@ if (
     <div class="lp-symptom-grid">
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Anlaufschmerz">
+          <svg viewBox="0 -960 960 960" width="28" height="28" fill="currentColor" aria-hidden="true" focusable="false"><path d="m293.08-50 114.69-570.92-95.08 38v132.53h-60v-171.84l189.69-80.62q14-6 27.97-7.19 13.96-1.19 26.8 2.66 12.85 3.84 23.81 11.88 10.96 8.04 18.58 20.89l33.84 53.99q29.85 48.54 75.12 78.04 45.27 29.5 101.5 31.81v60q-68.46-3.08-122.12-34.77-53.65-31.69-92.27-83.62l-30.76 153.01L590-330.77V-50h-60v-247.31l-97.85-83.61L355.54-50h-62.46Zm194.65-717.73q-21.58-21.58-21.58-52.27 0-30.69 21.58-52.27 21.58-21.58 52.27-21.58 30.69 0 52.27 21.58 21.58 21.58 21.58 52.27 0 30.69-21.58 52.27-21.58 21.58-52.27 21.58-30.69 0-52.27-21.58Z"/></svg>
         </span>
         <span><strong>Anlaufschmerz</strong></span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/stairs_2_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Belastungsschmerz">
+          <svg viewBox="0 -960 960 960" width="28" height="28" fill="currentColor" aria-hidden="true" focusable="false"><path d="M100-220v-60h233.27v-230h233.27v-230H860v60H626.73v230H393.46v230H100Z"/></svg>
         </span>
         <span><strong>Belastungsschmerz</strong> beim Treppensteigen oder Gehen</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/directions_walk_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Instabilität">
+          <svg viewBox="0 -960 960 960" width="28" height="28" fill="currentColor" aria-hidden="true" focusable="false"><path d="m293.08-50 114.69-570.92-95.08 38v132.53h-60v-171.84l189.69-80.62q14-6 27.97-7.19 13.96-1.19 26.8 2.66 12.85 3.84 23.81 11.88 10.96 8.04 18.58 20.89l33.84 53.99q29.85 48.54 75.12 78.04 45.27 29.5 101.5 31.81v60q-68.46-3.08-122.12-34.77-53.65-31.69-92.27-83.62l-30.76 153.01L590-330.77V-50h-60v-247.31l-97.85-83.61L355.54-50h-62.46Zm194.65-717.73q-21.58-21.58-21.58-52.27 0-30.69 21.58-52.27 21.58-21.58 52.27-21.58 30.69 0 52.27 21.58 21.58 21.58 21.58 52.27 0 30.69-21.58 52.27-21.58 21.58-52.27 21.58-30.69 0-52.27-21.58Z"/></svg>
         </span>
         <span><strong>Instabilität</strong> und „Wegknicken“</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/femur_alt_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Sichtbare Fehlstellungen">
+          <svg viewBox="0 -960 960 960" width="28" height="28" fill="currentColor" aria-hidden="true" focusable="false"><path d="M536.15-448.46q14.7 0 25.04-10.35 10.35-10.34 10.35-25.04 0-5.84-1.12-10.38-1.11-4.54-3.73-8.77 10.62-3.23 17.73-12.27 7.12-9.04 7.12-20.88 0-14.7-10.35-25.04-10.34-10.35-25.04-10.35-11.46 0-20.69 6.62-9.23 6.61-12.46 17.84l-146.38-70.38q3.15-4.39 4.8-8.96 1.66-4.58 1.66-9.73 0-14.7-10.35-25.04-10.34-10.35-25.04-10.35-14.69 0-25.04 10.35-10.34 10.34-10.34 25.04 0 4.84 1.61 9.38 1.62 4.54 4.23 8.77-10.61 3.23-18.23 12.27-7.61 9.04-7.61 21.88 0 14.7 10.34 25.04 10.35 10.35 25.04 10.35 12.08 0 20.93-6.54 8.84-6.54 12.46-17l146 69.61q-.77.77-6.31 18.54 0 14.7 10.35 25.04 10.34 10.35 25.03 10.35ZM415.54-80.38q-19.08-49.7-26.88-99.24-7.81-49.53-8.85-92.73-1.04-43.19 1.61-77.19 2.66-34 4.5-52.61-.61-2.31-.57-4.24.04-1.92-3.27-2.3-14.31-3.08-41.85-9.04-27.54-5.96-62.34-18.58-34.81-12.61-73.62-32.46t-76.04-50.08L165.15-570q40.16 35 83.62 55.5 43.46 20.5 79.85 32Q365-471 389-467.5l24 3.5q19.92 1.38 29.27 16.15 9.35 14.77 6.73 30.85l-4.5 33.5q-4.5 33.5-5 83.5t7.5 109q8 59 33 111l-64.46-.38ZM740-80h-60v-423q0-48-25.5-87T586-649L312.62-771.23l37.84-51.23 260.46 118.54q59 26.69 94.04 80.69Q740-569.23 740-503v423Zm-260 0q-25-52-33-111t-7.5-109q.5-50 5-83.5L449-417q2.62-16.08-6.73-30.85Q432.92-462.62 413-464l-24-3.5q-24-3.5-60.38-15-36.39-11.5-79.85-32-43.46-20.5-83.62-55.5 40.16 35 83.62 55.5 43.46 20.5 79.85 32Q365-471 389-467.5l24 3.5q19.92 1.38 29.27 16.15 9.35 14.77 6.73 30.85l-4.5 33.5q-4.5 33.5-5 83.5t7.5 109q8 59 33 111Z"/></svg>
         </span>
         <span><strong>Sichtbare Fehlstellungen</strong> durch den einseitigen Abrieb des Knorpels</span>
       </div>
 
       <div class="lp-symptom-card">
         <span class="lp-symptom-icon" aria-hidden="true">
-          <img src="https://ortho-faschingbauer.at/wp-content/uploads/rheumatology_24dp_416171_FILL0_wght300_GRAD0_opsz24-1.png" width="24" height="24" alt="Regelmäßige Schwellungen">
+          <svg viewBox="0 -960 960 960" width="28" height="28" fill="currentColor" aria-hidden="true" focusable="false"><path d="M411-361.85Zm488.85 78.54-176.16-58.23 19.08-57.38 176.15 58.84-19.07 56.77ZM910-450H741.54v-60H910v60Zm7.92-171.54-176.38 59.85-18.23-57.77 176.77-58.46 17.84 56.38Zm-632.8 207.31q-43.66 0-74.39-30.64Q180-475.52 180-519.17q0-21.83 8.44-40.7 8.44-18.87 22.79-33.13L300-682.77v-181.84h60v190.38q0 8-3.5 15.5t-8.5 13.5l-95 95q-6 6-9.5 14t-3.5 17q0 18 13.5 31.5t31.5 13.5q12 0 19.19-4 7.19-4 18.81-14 22.38-18 43.76-27 21.37-9 43.24-9 22 0 43.5 9t43.5 27q12 10 19 14t19 4q19 0 32-13.5t13-31.5q0-9-3.5-17.5t-9.5-14.5l-95-95q-5-6-8.5-13t-3.5-15v-190.38h60v180.84L609.77-594q14.69 14.31 22.46 33.6 7.77 19.29 7.77 41.1 0 43.61-30.24 74.34-30.24 30.73-74.76 30.73-28 0-45.04-10.39-17.04-10.38-30.27-22-16.92-13.53-28.69-17.57-11.77-4.04-21-4.04-11.31 0-23.69 6.19-12.39 6.19-25 15.42-13.23 11.62-30.44 22-17.21 10.39-45.75 10.39ZM460-95.39v-184.23q0-8.13 3.5-15.76 3.5-7.62 8.5-13.24l95-95q6-6 9.5-14t3.5-17q0-8.07-2.54-14.92t-7-12.46l43.15-43.15Q626-491.23 633-473.04q7 18.19 7 38.42 0 21.39-7.98 39.92t-22.25 32.85L520-272.08v176.69h-60Zm-160 0v-176.69l-88.77-89.77q-14.35-14.32-22.79-32.85T180-434.62q0-20.23 7.5-38.42t19.89-31.73L250.54-462q-5.08 5.61-7.81 12.31-2.73 6.7-2.73 15.07 0 9 3.5 17t9.5 14l95 95q5 6 8.5 13.5t3.5 15.5v184.23h-60Zm110-550.84Z"/></svg>
         </span>
         <span><strong>Regelmäßige Schwellungen</strong> und Entzündungen</span>
       </div>
