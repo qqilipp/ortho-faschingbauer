@@ -9,7 +9,9 @@ $lp_form_recipient = 'praxis@ortho-faschingbauer.at';
 $lp_form_status = '';
 $lp_form_message = '';
 
-if (isset($_GET['lp_sent']) && $_GET['lp_sent'] === '1') {
+// lp_sent=1 heißt: wp_mail() war erfolgreich. Nur darauf darf der GTM-Trigger feuern.
+// lp_sent=hp ist der Honeypot-Fall: der Bot sieht dieselbe Meldung, versendet wird nichts.
+if (isset($_GET['lp_sent']) && in_array($_GET['lp_sent'], array('1', 'hp'), true)) {
   $lp_form_status = 'success';
   $lp_form_message = 'Vielen Dank. Ihre Anfrage wurde gesendet.';
 } elseif (isset($_GET['lp_error']) && $_GET['lp_error'] === '1') {
@@ -46,7 +48,8 @@ if (
     $lp_form_status = 'error';
     $lp_form_message = 'Die Anfrage konnte nicht verifiziert werden. Bitte versuchen Sie es erneut.';
   } elseif ($lp_honeypot !== '') {
-    wp_safe_redirect(add_query_arg('lp_sent', '1', $lp_redirect_base) . '#formular');
+    // Honeypot: dem Bot eine Erfolgsmeldung zeigen, aber nichts versenden und nichts zählen.
+    wp_safe_redirect(add_query_arg('lp_sent', 'hp', $lp_redirect_base) . '#formular');
     exit;
   } elseif ($lp_form_time === 0 || time() - $lp_form_time < 3) {
     $lp_form_status = 'error';
@@ -56,7 +59,9 @@ if (
     $lp_form_message = 'Bitte füllen Sie alle Felder aus und geben Sie eine gültige E-Mail Adresse sowie Telefonnummer ein.';
   } else {
     $lp_ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : 'unknown';
-    $lp_rate_key = 'lp_huefte_rate_' . md5($lp_ip);
+    // Eigener Rate-Limit-Key je Landingpage. Vorher teilten sich Hüfte und Knie einen Key,
+    // dadurch sperrte eine Anfrage auf der einen Seite die andere fünf Minuten lang.
+    $lp_rate_key = 'lp_knie_rate_' . md5($lp_ip);
 
     if (get_transient($lp_rate_key)) {
       $lp_form_status = 'error';
