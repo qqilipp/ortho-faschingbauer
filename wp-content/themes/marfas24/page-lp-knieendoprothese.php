@@ -748,62 +748,6 @@ if (
       gap: 14px;
     }
 
-    .lp-page .lp-faq-item {
-      border: 1px solid #e3e5e6;
-      border-radius: var(--radius-card);
-      background: #ffffff;
-      overflow: hidden;
-      transition: border-color 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .lp-page .lp-faq-item[open] {
-      border-color: #1594f5;
-      box-shadow: inset 0 0 0 1px #1594f5;
-    }
-
-    .lp-page .lp-faq-question {
-      position: relative;
-      display: block;
-      padding: 24px 62px 24px 30px;
-      color: #111114;
-      cursor: pointer;
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: 700;
-      list-style: none;
-      transition: color 0.28s ease;
-    }
-
-    .lp-page .lp-faq-question::-webkit-details-marker {
-      display: none;
-    }
-
-    .lp-page .lp-faq-question::after {
-      content: "+";
-      position: absolute;
-      top: 50%;
-      right: 30px;
-      color: #6A96A5;
-      font-size: 30px;
-      line-height: 1;
-      font-weight: 400;
-      transform: translateY(-50%);
-      transition: color 0.28s ease, opacity 0.28s ease, transform 0.28s ease;
-    }
-
-    .lp-page .lp-faq-answer {
-      margin: -8px 0 0;
-      padding: 0 62px 26px 30px;
-      color: #55555c;
-      font-size: 16px;
-      line-height: 1.45;
-      font-weight: 400;
-      overflow: hidden;
-      transform: translateY(-2px);
-      transition: height 0.48s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease, transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: height, opacity, transform;
-    }
-
     /* =========================
        CONTACT SECTION
     ========================= */
@@ -1165,21 +1109,6 @@ if (
         font-size: 28px;
       }
 
-      .lp-page .lp-faq-question {
-        padding: 22px 54px 22px 20px;
-        font-size: 15px;
-      }
-
-      .lp-page .lp-faq-question::after {
-        right: 20px;
-        font-size: 28px;
-      }
-
-      .lp-page .lp-faq-answer {
-        padding: 0 42px 22px 20px;
-        font-size: 15px;
-      }
-
       .lp-page .lp-contact-section {
         padding: 34px 28px 34px;
       }
@@ -1499,61 +1428,97 @@ if (
   <section class="lp-faq-section">
     <h2 class="lp-faq-title">Häufig gestellte Fragen</h2>
 
-    <div class="lp-faq-list">
-      <details class="lp-faq-item" open>
-        <summary class="lp-faq-question">Wie lange hält ein künstliches Kniegelenk?</summary>
-        <p class="lp-faq-answer">
-          Moderne Knieprothesen haben eine lange Lebensdauer. Bei normaler Belastung halten viele
+    <div class="svc-faq__list" data-svc-faq>
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-1" aria-expanded="false" aria-controls="lp-knie-faq-panel-1">
+            <span class="svc-faq__q">Wie lange hält ein künstliches Kniegelenk?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-1" role="region" aria-labelledby="lp-knie-faq-btn-1">
+            <div class="svc-faq__a">
+              <p>Moderne Knieprothesen haben eine lange Lebensdauer. Bei normaler Belastung halten viele
           Implantate 15 bis 20 Jahre oder länger. Entscheidend sind unter anderem Knochenqualität,
-          Aktivitätsniveau, Implantattyp und eine sorgfältige Nachbehandlung.
-        </p>
-      </details>
+          Aktivitätsniveau, Implantattyp und eine sorgfältige Nachbehandlung.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Wie schmerzhaft ist die Operation und die Zeit danach?</summary>
-        <p class="lp-faq-answer">
-          Nach einer Knieoperation sind Schmerzen in den ersten Tagen normal, werden aber mit einem
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-2" aria-expanded="false" aria-controls="lp-knie-faq-panel-2">
+            <span class="svc-faq__q">Wie schmerzhaft ist die Operation und die Zeit danach?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-2" role="region" aria-labelledby="lp-knie-faq-btn-2">
+            <div class="svc-faq__a">
+              <p>Nach einer Knieoperation sind Schmerzen in den ersten Tagen normal, werden aber mit einem
           individuellen Schmerzkonzept behandelt. Ziel ist, frühzeitig Bewegung zu ermöglichen und
-          die Beschwerden Schritt für Schritt zu reduzieren.
-        </p>
-      </details>
+          die Beschwerden Schritt für Schritt zu reduzieren.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Welche Arten von Knieprothesen gibt es?</summary>
-        <p class="lp-faq-answer">
-          Je nach Befund kommen unterschiedliche Versorgungen infrage, zum Beispiel Teilprothesen
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-3" aria-expanded="false" aria-controls="lp-knie-faq-panel-3">
+            <span class="svc-faq__q">Welche Arten von Knieprothesen gibt es?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-3" role="region" aria-labelledby="lp-knie-faq-btn-3">
+            <div class="svc-faq__a">
+              <p>Je nach Befund kommen unterschiedliche Versorgungen infrage, zum Beispiel Teilprothesen
           oder Totalendoprothesen. Welche Lösung sinnvoll ist, hängt davon ab, welche Bereiche des
-          Kniegelenks betroffen sind und wie stark der Verschleiß ausgeprägt ist.
-        </p>
-      </details>
+          Kniegelenks betroffen sind und wie stark der Verschleiß ausgeprägt ist.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Wie sieht eine Kniegelenkprothese aus?</summary>
-        <p class="lp-faq-answer">
-          Eine Knieprothese ersetzt die geschädigten Gelenkflächen durch künstliche Komponenten.
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-4" aria-expanded="false" aria-controls="lp-knie-faq-panel-4">
+            <span class="svc-faq__q">Wie sieht eine Kniegelenkprothese aus?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-4" role="region" aria-labelledby="lp-knie-faq-btn-4">
+            <div class="svc-faq__a">
+              <p>Eine Knieprothese ersetzt die geschädigten Gelenkflächen durch künstliche Komponenten.
           Sie besteht meist aus Metall- und Kunststoffelementen, die ein möglichst natürliches Gleiten
-          des Gelenks ermöglichen sollen.
-        </p>
-      </details>
+          des Gelenks ermöglichen sollen.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Ist ein künstliches Kniegelenk im Alltag spürbar?</summary>
-        <p class="lp-faq-answer">
-          Viele Patientinnen und Patienten nehmen ihr künstliches Kniegelenk nach der Heilungsphase
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-5" aria-expanded="false" aria-controls="lp-knie-faq-panel-5">
+            <span class="svc-faq__q">Ist ein künstliches Kniegelenk im Alltag spürbar?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-5" role="region" aria-labelledby="lp-knie-faq-btn-5">
+            <div class="svc-faq__a">
+              <p>Viele Patientinnen und Patienten nehmen ihr künstliches Kniegelenk nach der Heilungsphase
           im Alltag kaum noch wahr. Voraussetzung dafür sind eine gute Operationstechnik, konsequente
-          Rehabilitation und realistische Belastung im Alltag.
-        </p>
-      </details>
+          Rehabilitation und realistische Belastung im Alltag.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Wann kann ich nach der OP wieder Auto fahren?</summary>
-        <p class="lp-faq-answer">
-          Das hängt vom Heilungsverlauf, der operierten Seite, der Beweglichkeit und der sicheren
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-knie-faq-btn-6" aria-expanded="false" aria-controls="lp-knie-faq-panel-6">
+            <span class="svc-faq__q">Wann kann ich nach der OP wieder Auto fahren?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-knie-faq-panel-6" role="region" aria-labelledby="lp-knie-faq-btn-6">
+            <div class="svc-faq__a">
+              <p>Das hängt vom Heilungsverlauf, der operierten Seite, der Beweglichkeit und der sicheren
           Kontrolle des Beins ab. Häufig wird das Autofahren erst nach ärztlicher Rücksprache wieder
-          empfohlen.
-        </p>
-      </details>
-    </div>
+          empfohlen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- CONTACT SECTION -->
@@ -1685,116 +1650,6 @@ if (
     window.addEventListener('resize', setFixedSlideHeight);
     setFixedSlideHeight();
     startAutoplay();
-  }());
-
-  (function () {
-    const faqLists = Array.from(document.querySelectorAll('.lp-faq-list'));
-
-    if (!faqLists.length) {
-      return;
-    }
-
-    function getAnswer(item) {
-      return item.querySelector('.lp-faq-answer');
-    }
-
-    function openItem(item) {
-      const answer = getAnswer(item);
-
-      if (!answer) {
-        item.open = true;
-        return;
-      }
-
-      window.clearTimeout(item._faqCloseTimer);
-      item.open = true;
-      answer.style.height = '0px';
-      answer.style.opacity = '0';
-      answer.style.transform = 'translateY(-2px)';
-
-      window.requestAnimationFrame(function () {
-        answer.style.height = answer.scrollHeight + 'px';
-        answer.style.opacity = '1';
-        answer.style.transform = 'translateY(0)';
-      });
-    }
-
-    function closeItem(item) {
-      const answer = getAnswer(item);
-
-      if (!answer) {
-        item.open = false;
-        return;
-      }
-
-      answer.style.height = answer.scrollHeight + 'px';
-      answer.style.opacity = '1';
-      answer.style.transform = 'translateY(0)';
-
-      window.requestAnimationFrame(function () {
-        answer.style.height = '0px';
-        answer.style.opacity = '0';
-        answer.style.transform = 'translateY(-2px)';
-      });
-
-      window.clearTimeout(item._faqCloseTimer);
-      item._faqCloseTimer = window.setTimeout(function () {
-        if (answer.style.height === '0px') {
-          item.open = false;
-        }
-      }, 480);
-    }
-
-    faqLists.forEach(function (list) {
-      const items = Array.from(list.querySelectorAll('.lp-faq-item'));
-
-      items.forEach(function (item) {
-        const answer = getAnswer(item);
-
-        if (answer) {
-          answer.style.height = item.open ? answer.scrollHeight + 'px' : '0px';
-          answer.style.opacity = item.open ? '1' : '0';
-          answer.style.transform = item.open ? 'translateY(0)' : 'translateY(-2px)';
-        }
-      });
-
-      list.addEventListener('click', function (event) {
-        const question = event.target.closest('.lp-faq-question');
-
-        if (!question || !list.contains(question)) {
-          return;
-        }
-
-        event.preventDefault();
-
-        const currentItem = question.closest('.lp-faq-item');
-        const shouldOpen = currentItem && !currentItem.open;
-
-        items.forEach(function (item) {
-          if (item !== currentItem && item.open) {
-            closeItem(item);
-          }
-        });
-
-        if (!currentItem) {
-          return;
-        }
-
-        if (shouldOpen) {
-          openItem(currentItem);
-        } else {
-          closeItem(currentItem);
-        }
-      });
-    });
-
-    window.addEventListener('resize', function () {
-      faqLists.forEach(function (list) {
-        Array.from(list.querySelectorAll('.lp-faq-item[open] .lp-faq-answer')).forEach(function (answer) {
-          answer.style.height = answer.scrollHeight + 'px';
-        });
-      });
-    });
   }());
 </script>
 

@@ -746,54 +746,6 @@ if (
       gap: 14px;
     }
 
-    .lp-page .lp-faq-item {
-      border: 1px solid #e3e5e6;
-      border-radius: var(--radius-card);
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .lp-page .lp-faq-item[open] {
-      border: 2px solid #1594f5;
-    }
-
-    .lp-page .lp-faq-question {
-      position: relative;
-      display: block;
-      padding: 24px 62px 24px 30px;
-      color: #111114;
-      cursor: pointer;
-      font-size: 17px;
-      line-height: 1.35;
-      font-weight: 700;
-      list-style: none;
-    }
-
-    .lp-page .lp-faq-question::-webkit-details-marker {
-      display: none;
-    }
-
-    .lp-page .lp-faq-question::after {
-      content: "+";
-      position: absolute;
-      top: 50%;
-      right: 30px;
-      color: #6A96A5;
-      font-size: 30px;
-      line-height: 1;
-      font-weight: 400;
-      transform: translateY(-50%);
-    }
-
-    .lp-page .lp-faq-answer {
-      margin: -8px 0 0;
-      padding: 0 62px 26px 30px;
-      color: #55555c;
-      font-size: 16px;
-      line-height: 1.45;
-      font-weight: 400;
-    }
-
     /* =========================
        CONTACT SECTION
     ========================= */
@@ -1121,21 +1073,6 @@ if (
         font-size: 28px;
       }
 
-      .lp-page .lp-faq-question {
-        padding: 22px 54px 22px 20px;
-        font-size: 15px;
-      }
-
-      .lp-page .lp-faq-question::after {
-        right: 20px;
-        font-size: 28px;
-      }
-
-      .lp-page .lp-faq-answer {
-        padding: 0 42px 22px 20px;
-        font-size: 15px;
-      }
-
       .lp-page .lp-contact-section {
         padding: 34px 28px 34px;
       }
@@ -1398,47 +1335,77 @@ if (
   <section class="lp-faq-section">
     <h2 class="lp-faq-title">Häufig gestellte Fragen</h2>
 
-    <div class="lp-faq-list">
-      <details class="lp-faq-item" open>
-        <summary class="lp-faq-question">Wie lange hält ein künstliches Hüftgelenk?</summary>
-        <p class="lp-faq-answer">
-          Moderne Implantate in der Hüftendoprothetik haben eine sehr hohe Lebensdauer.
-          Bei normaler Belastung halten heute über 90% der Prothesen 20 bis 25 Jahre oder länger.
-        </p>
-      </details>
+    <div class="svc-faq__list" data-svc-faq>
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-huefte-faq-btn-1" aria-expanded="false" aria-controls="lp-huefte-faq-panel-1">
+            <span class="svc-faq__q">Wie lange hält ein künstliches Hüftgelenk?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Habe ich nach der Hüftoperation starke Schmerzen?</summary>
-        <p class="lp-faq-answer">
-          Schmerzen nach der Operation sind normal, werden aber mit einem individuellen Schmerzkonzept
-          behandelt und nehmen in der Regel Schritt für Schritt deutlich ab.
-        </p>
-      </details>
+          <div class="svc-faq__panel" id="lp-huefte-faq-panel-1" role="region" aria-labelledby="lp-huefte-faq-btn-1">
+            <div class="svc-faq__a">
+              <p>Moderne Implantate in der Hüftendoprothetik haben eine sehr hohe Lebensdauer.
+          Bei normaler Belastung halten heute über 90% der Prothesen 20 bis 25 Jahre oder länger.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Wann kann ich nach dem Hüftgelenkersatz wieder Sport treiben?</summary>
-        <p class="lp-faq-answer">
-          Das hängt vom Heilungsverlauf und der Sportart ab. Schonende Bewegung beginnt meist früh,
-          sportliche Belastung wird individuell in der Nachkontrolle besprochen.
-        </p>
-      </details>
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-huefte-faq-btn-2" aria-expanded="false" aria-controls="lp-huefte-faq-panel-2">
+            <span class="svc-faq__q">Habe ich nach der Hüftoperation starke Schmerzen?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Gibt es Unterschiede bei den Materialien beim Gelenkersatz der Hüfte?</summary>
-        <p class="lp-faq-answer">
-          Ja. Material und Implantattyp werden passend zu Knochenqualität, Aktivitätsniveau und
-          medizinischer Ausgangssituation ausgewählt.
-        </p>
-      </details>
+          <div class="svc-faq__panel" id="lp-huefte-faq-panel-2" role="region" aria-labelledby="lp-huefte-faq-btn-2">
+            <div class="svc-faq__a">
+              <p>Schmerzen nach der Operation sind normal, werden aber mit einem individuellen Schmerzkonzept
+          behandelt und nehmen in der Regel Schritt für Schritt deutlich ab.</p>
+            </div>
+          </div>
+        </div>
 
-      <details class="lp-faq-item">
-        <summary class="lp-faq-question">Ist ein Hüftgelenkersatz im Alltag spürbar?</summary>
-        <p class="lp-faq-answer">
-          Ziel ist ein möglichst natürliches Bewegungsgefühl. Viele Patientinnen und Patienten nehmen
-          das künstliche Gelenk im Alltag nach der Rehabilitation kaum noch bewusst wahr.
-        </p>
-      </details>
-    </div>
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-huefte-faq-btn-3" aria-expanded="false" aria-controls="lp-huefte-faq-panel-3">
+            <span class="svc-faq__q">Wann kann ich nach dem Hüftgelenkersatz wieder Sport treiben?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-huefte-faq-panel-3" role="region" aria-labelledby="lp-huefte-faq-btn-3">
+            <div class="svc-faq__a">
+              <p>Das hängt vom Heilungsverlauf und der Sportart ab. Schonende Bewegung beginnt meist früh,
+          sportliche Belastung wird individuell in der Nachkontrolle besprochen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-huefte-faq-btn-4" aria-expanded="false" aria-controls="lp-huefte-faq-panel-4">
+            <span class="svc-faq__q">Gibt es Unterschiede bei den Materialien beim Gelenkersatz der Hüfte?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-huefte-faq-panel-4" role="region" aria-labelledby="lp-huefte-faq-btn-4">
+            <div class="svc-faq__a">
+              <p>Ja. Material und Implantattyp werden passend zu Knochenqualität, Aktivitätsniveau und
+          medizinischer Ausgangssituation ausgewählt.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-faq__item">
+          <button class="svc-faq__btn" type="button" id="lp-huefte-faq-btn-5" aria-expanded="false" aria-controls="lp-huefte-faq-panel-5">
+            <span class="svc-faq__q">Ist ein Hüftgelenkersatz im Alltag spürbar?</span>
+            <span class="svc-faq__icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="svc-faq__panel" id="lp-huefte-faq-panel-5" role="region" aria-labelledby="lp-huefte-faq-btn-5">
+            <div class="svc-faq__a">
+              <p>Ziel ist ein möglichst natürliches Bewegungsgefühl. Viele Patientinnen und Patienten nehmen
+          das künstliche Gelenk im Alltag nach der Rehabilitation kaum noch bewusst wahr.</p>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- CONTACT SECTION -->
