@@ -186,7 +186,7 @@ if (
       height: 58px;
       padding: 0 20px;
       border: 0;
-      border-radius: 8px;
+      border-radius: var(--radius-control);
       background: #6A96A5;
       color: #ffffff !important;
       font-size: 16px;
@@ -237,14 +237,14 @@ if (
 
     .lp-page .lp-title-card {
       width: 100%;
-      background: #6A96A5;
-      border-radius: 26px 26px 0 0;
+      background: #f8fbfc;
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
       overflow: hidden;
     }
 
     .lp-page .lp-title-bar {
-      background: #6A96A5;
-      color: #ffffff;
+      background: #f1f3f4;
+      color: #6A96A5;
       padding: 17px 48px 14px;
       font-size: 22px;
       line-height: 26px;
@@ -254,7 +254,7 @@ if (
 
     .lp-page .lp-title-content {
       background: #f8fbfc;
-      border-radius: 24px 24px 0 0;
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
       padding: 34px 48px 32px;
     }
 
@@ -290,7 +290,7 @@ if (
       padding: 24px 42px 26px;
       background: #ffffff;
       border: 1px solid rgba(106, 150, 165, 0.12);
-      border-radius: 22px;
+      border-radius: var(--radius-card);
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       text-align: center;
     }
@@ -398,8 +398,8 @@ if (
       width: 100%;
       padding: 16px 20px;
       border-radius: 0;
-      background: #6A96A5;
-      color: #ffffff;
+      background: #f1f3f4;
+      color: #6A96A5;
       text-align: center;
       font-size: 18px;
       line-height: 1.2;
@@ -439,7 +439,7 @@ if (
     .lp-page .lp-expert-card {
       padding: 84px 48px 28px;
       border: 1px solid rgba(106, 150, 165, 0.12);
-      border-radius: 24px;
+      border-radius: var(--radius-card);
       background: #f1f3f4;
       text-align: center;
     }
@@ -541,7 +541,7 @@ if (
       min-height: 84px;
       padding: 18px 22px 17px 82px;
       overflow: hidden;
-      border-radius: 24px;
+      border-radius: var(--radius-card);
       background: #ffffff;
       color: #151518;
       font-size: 16px;
@@ -557,7 +557,9 @@ if (
       right: 0;
       height: 9px;
       background: #6A96A5;
-    }
+    /* Farbstreifen entfernt: Signalfarbe nur noch auf Eyecatchern. */
+    display: none;
+  }
 
     .lp-page .lp-symptom-icon {
       position: absolute;
@@ -587,7 +589,7 @@ if (
     .lp-page .lp-cta-section {
       position: relative;
       padding: 78px 60px 64px;
-      background: #6A96A5;
+      background: #f8fbfc;
       scroll-margin-top: 20px;
     }
 
@@ -618,7 +620,7 @@ if (
       max-width: 820px;
       margin: 0 auto;
       padding: 34px 56px 40px;
-      border-radius: 28px;
+      border-radius: var(--radius-card);
       background: #ffffff;
     }
 
@@ -640,7 +642,7 @@ if (
     .lp-page .lp-form-message {
       margin: 0 0 18px;
       padding: 12px 16px;
-      border-radius: 8px;
+      border-radius: var(--radius-control);
       font-size: 15px;
       line-height: 1.35;
       font-weight: 600;
@@ -669,7 +671,7 @@ if (
       height: 58px;
       padding: 0 18px;
       border: 1px solid #e1e1e1;
-      border-radius: 9px;
+      border-radius: var(--radius-control);
       appearance: none;
       background: #ffffff;
       color: #3f3f46;
@@ -710,7 +712,7 @@ if (
       height: 60px;
       padding: 0 24px;
       border: 0;
-      border-radius: 8px;
+      border-radius: var(--radius-control);
       appearance: none;
       background: #6A96A5;
       color: #ffffff;
@@ -746,7 +748,7 @@ if (
 
     .lp-page .lp-faq-item {
       border: 1px solid #e3e5e6;
-      border-radius: 22px;
+      border-radius: var(--radius-card);
       background: #ffffff;
       overflow: hidden;
     }
@@ -912,7 +914,7 @@ if (
       height: 58px;
       padding: 0 10px;
       border: 1px solid #6A96A5;
-      border-radius: 8px;
+      border-radius: var(--radius-control);
       background: #6A96A5;
       color: #ffffff;
       text-decoration: none;
@@ -1103,7 +1105,7 @@ if (
 
       .lp-page .lp-cta-card {
         padding: 28px 28px 34px;
-        border-radius: 22px;
+        border-radius: var(--radius-card);
       }
 
       .lp-page .lp-cta-card h2 {

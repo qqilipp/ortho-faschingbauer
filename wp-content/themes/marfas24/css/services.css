@@ -186,7 +186,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px 18px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
@@ -207,7 +207,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #e6e6e6;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
 }
 
 /* Right column */
@@ -335,7 +335,7 @@
   position: relative;
   background: #fff;
   border: 1px solid rgba(0,0,0,.10);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
 
   /* Wichtig: mehr Abstand oben, damit der Text nicht unter den Avatar gerät */
   padding: 86px 20px 22px;
@@ -365,7 +365,7 @@
   position: relative;
   background: #fff;
   border: 1px solid rgba(0,0,0,.10);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   padding: 86px 20px 22px;
   text-align: center;
   box-shadow: none;
@@ -389,7 +389,7 @@
   position: relative;
   background: #f6f8f9;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
 
   /* Platz für den Avatar + angenehmer Abstand */
   padding: 64px 18px 26px;
@@ -433,7 +433,7 @@
   width: auto;
   min-width: 200px;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-control);
 }
 
 
@@ -579,7 +579,7 @@
   padding: 18px 18px;
   border-left: 4px solid #6a96a5;
   background: #f6f8f9;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   max-width: 900px;
 }
 
@@ -739,7 +739,7 @@
 .svc-faq__btn:focus-visible{
   outline: 2px solid rgba(106,150,165,0.55);
   outline-offset: 4px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
 }
 
 @media (max-width: 980px){
@@ -985,7 +985,7 @@
   margin: 26px 0;
   padding: 22px 26px 22px 72px; /* место под кавычки */
   background: #f6f8f9;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
 
   border: 0;        /* убираем возможную рамку темы */
 }
@@ -1020,7 +1020,7 @@
 
 .service-page .svc-list{
   background: #f6f8f9;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   padding: 14px 18px;
   margin: 14px 0 0;
 }
@@ -1120,7 +1120,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;      /* anpassen an deine Standardbuttons */
+  border-radius: var(--radius-control);      /* anpassen an deine Standardbuttons */
   padding: 12px 26px;       /* anpassen */
   font-size: 17px;          /* anpassen */
   font-weight: 600;
@@ -1187,7 +1187,7 @@ h2 {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   display: block;
 }
 
@@ -1264,7 +1264,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 /* ---- Knee ---- */
 .of-anatomy-knee{
   background: #f6f8f9;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   padding:48px 0;
 }
 .of-anatomy-knee__wrap{
@@ -1321,7 +1321,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 /* ---- Hip ---- */
 .of-anatomy-hip{
   background: #f6f8f9;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   padding:48px 0;
 }
 .of-anatomy-hip__wrap{
@@ -1390,7 +1390,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 /* Service page: Wissen-cards look like Wissen */
 .service-page .wissen-card{
   background: #f6f8f9;
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   padding: 18px;
   border: 1px solid rgba(0,0,0,0.08);
   box-shadow: none;
@@ -2009,7 +2009,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   flex: 0 0 56px;
   width: 56px;
   height: 56px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   overflow: hidden;
   background: #f2f2f2;
 }
@@ -2054,7 +2054,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   margin: 0 auto;
   background: #f6f8f9;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 28px;
+  border-radius: var(--radius-card);
   padding: 32px 36px;
 }
 
@@ -2079,7 +2079,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 
 /* WS-Form-Styler-Variablen nur innerhalb dieser Box überschrieben (gleiche Optik wie Rückrufbox/Kontaktseite) */
 .svc-form [data-wsf-style-id] {
-  --wsf-field-border-radius: 9px;
+  --wsf-field-border-radius: var(--radius-control);
   --wsf-field-border-color: #e1e1e1;
   --wsf-field-border-color-hover: #e1e1e1;
   --wsf-field-padding-vertical: 18px;
@@ -2090,7 +2090,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 @media (max-width: 600px) {
   .svc-form {
     padding: 24px 22px;
-    border-radius: 20px;
+    border-radius: var(--radius-card);
   }
 }
 
@@ -2109,7 +2109,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   padding: 20px;
   background: #f6f8f9;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
 }
 
 .blog-authorbox__photo {
@@ -2167,7 +2167,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   margin: 14px 16px 6px 0;
   background: #fff;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 8px 12px;
 }
 
@@ -2176,7 +2176,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   width: 100%;
   max-width: 340px;
   height: auto;
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   margin: 16px 0 6px;
 }
 
@@ -2245,7 +2245,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   padding: 32px 36px;
   background: #ffffff;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 28px;
+  border-radius: var(--radius-card);
   box-shadow: 0 2px 10px rgba(0,0,0,.04);
 }
 
@@ -2266,7 +2266,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 
 /* WS-Form-Styler-Variablen nur innerhalb dieser Box überschrieben (Standard-Light-Style bleibt sitewide unangetastet) */
 .blog-callbackbox [data-wsf-style-id] {
-  --wsf-field-border-radius: 9px;
+  --wsf-field-border-radius: var(--radius-control);
   --wsf-field-border-color: #e1e1e1;
   --wsf-field-border-color-hover: #e1e1e1;
   --wsf-field-padding-vertical: 18px;
@@ -2277,7 +2277,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
 @media (max-width: 600px) {
   .blog-callbackbox {
     padding: 24px 22px;
-    border-radius: 20px;
+    border-radius: var(--radius-card);
   }
 }
 
@@ -2318,7 +2318,7 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   padding: 20px;
   background: #fff;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   text-decoration: none;
   color: inherit;
   transition: transform .2s ease, box-shadow .2s ease;
@@ -2395,7 +2395,7 @@ a.netzwerk-card:hover .netzwerk-card__name{ text-decoration: underline; }
 
 .review-card {
   background: #f8fafa;
-  border-radius: 8px;
+  border-radius: var(--radius-card);
   padding: 30px 35px;
   min-height: 230px;
   display: flex;

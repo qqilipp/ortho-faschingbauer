@@ -33,6 +33,22 @@ Author URI: http://www.designtiger.at/
 
 
 /*************************************************
+* Design-Tokens
+*
+* Eckenradien liegen hier zentral, statt ueber Theme, services.css und die
+* Landingpage-Templates verstreut zu sein. Vor dem 29.10.2026 reichten sie
+* von 1 bis 28 px, die Landingpages lagen durchgehend hoeher als die
+* Leistungsseiten und wirkten dadurch wie ein anderes Produkt.
+*
+* Kreise (50%) und Pillen (999px) bleiben als Form eigenstaendig.
+*************************************************/
+
+:root {
+  --radius-card: 12px;    /* Karten, Boxen, Bildblöcke, Formularrahmen */
+  --radius-control: 8px;  /* Buttons, Eingabefelder, Meldungen */
+}
+
+/*************************************************
 * Custom Styles
 *************************************************/
 
