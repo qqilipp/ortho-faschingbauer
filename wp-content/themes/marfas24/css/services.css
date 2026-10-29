@@ -1,0 +1,2470 @@
+/*************************************************
+* Service- und Leistungsseiten
+*
+* Diese Datei lag bis zum 29.10.2026 als "Zusaetzliches CSS" im Customizer
+* (Post-ID 1003) und war damit nicht versioniert, nicht deploybar und von
+* jedem mit wp-admin-Zugang mit einem Klick ueberschreibbar.
+*
+* Sie wird in functions.php nach style.css eingebunden und behaelt dadurch
+* ihre bisherige Position in der Kaskade.
+*
+* Aenderungen gehoeren ab jetzt hierher, nicht mehr in den Customizer.
+*************************************************/
+
+.site-footer {
+  background: #e6e6e6;
+}
+
+.site-footer .footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.4fr 1.4fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.site-footer .footer-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.site-footer .footer-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer .footer-list li {
+  margin: 0 0 8px 0;
+}
+
+.site-footer .footer-text {
+  line-height: 1.5;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer .footer-contact-row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.site-footer .footer-ico {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+/* Untere Leiste */
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.site-footer .footer-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.site-footer .footer-bottom-links a {
+  margin-left: 14px;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .site-footer .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .site-footer .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-bottom-inner.footer-bottom-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-bottom-inner {
+  width: 100%;
+}
+
+.footer-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.15;
+}
+
+.footer-logo-line-1 {
+  display: block;
+  font-size: 14px;
+  font-weight: 400; 
+  color: #2b2b2b;         
+}
+
+.footer-logo-line-2 {
+  display: block;
+  font-size: 22px;
+  font-weight: 600;          
+  color: #7fa6b3;           
+}
+
+
+
+/* ===== Service page ===== */
+/* ===== Service Hero ===== */
+.svc-hero { padding: 28px 0 60px; }
+
+.svc-hero__container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.svc-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
+
+.svc-hero__breadcrumb {
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin: 0 0 10px 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.svc-hero__breadcrumb a { text-decoration: none; }
+.svc-hero__sep { margin: 0 8px; opacity: .6; }
+
+.svc-hero__title {
+  font-size: 44px;
+  line-height: 1.1;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.svc-hero__intro {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.svc-hero__intro p { margin: 0 0 14px; }
+
+.svc-hero__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.svc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .05s ease, opacity .2s ease;
+}
+
+.svc-btn:active { transform: translateY(1px); }
+
+.svc-btn--primary { font-size: 17px; background: #6a96a5; color: #fff; padding: 12px 25px; }
+.svc-btn--ghost { border: 1px solid rgba(0,0,0,.15); color: #111; background: transparent; }
+.svc-btn--primary:hover {
+ color: #fff; 
+	background: #5a8391;
+}
+
+.svc-hero__visual { margin-top: 28px; }
+.svc-hero__visual-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #e6e6e6;
+  border-radius: 10px;
+}
+
+/* Right column */
+
+.svc-card__title {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  opacity: .7;
+  font-weight: 700;
+}
+
+.svc-card__empty { font-size: 14px; opacity: .7; }
+
+/* Key/Value list */
+.svc-kv { margin: 0; padding: 0; }
+
+.svc-kv__row {
+ 
+	
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid #ececec;
+}
+
+.svc-kv__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.svc-kv__label {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .75;
+}
+
+.svc-kv__value {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .svc-hero__grid { grid-template-columns: 1fr; }
+  .svc-hero__title { font-size: 36px; }
+}
+
+/* === CARD rechts: Rahmen dezenter gestalten === */
+
+.svc-hero__side .svc-card {
+  
+  box-shadow: none;        
+  padding: 18px 18px 8px;
+  background: #fff;
+}
+
+/* Kurzinfo-Überschrift */
+.svc-hero__side .svc-card__title {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  opacity: .7;
+}
+
+/* === Kurzinfo: Tabelle + Trennlinien === */
+.svc-kv {
+  margin: 0;
+}
+
+/* Jede Zeile */
+.svc-kv__row {
+
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid #ececec;    /* полосочки */
+}
+
+/* Erste Zeile ohne obere Linie */
+.svc-kv__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* label */
+.svc-kv__label {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .75;
+}
+
+/* value */
+.svc-kv__value {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#header {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+
+
+/* =========================
+   RIGHT COLUMN: FINAL
+   ========================= */
+/* Kurzinfo – komplett ohne Hintergrund und Rahmen */
+.svc-hero__side .svc-card:not(.svc-card--profile){
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 18px 0;
+  box-shadow: none;
+}
+
+/* Profile – einzige Karte mit Rahmen */
+.svc-card--profile{
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 18px;
+
+  /* Wichtig: mehr Abstand oben, damit der Text nicht unter den Avatar gerät */
+  padding: 86px 20px 22px;
+  text-align: center;
+  box-shadow: none;
+}
+
+/* Avatar „springt“ nach oben – Rahmen bis zur Bildmitte */
+.svc-card--profile .svc-profile__avatar{
+  position: absolute;
+  top: -43px;                 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86px;
+  height: 86px;
+
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff;
+
+
+  border: 1px solid rgba(0,0,0,.10);
+}
+
+.svc-profile__name{ margin-top: 0; }
+.svc-card--profile{
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 18px;
+  padding: 86px 20px 22px;
+  text-align: center;
+  box-shadow: none;
+
+
+  margin-top: 36px;
+}
+
+
+.svc-hero__side .svc-card:not(.svc-card--profile){
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 22px 0;
+  box-shadow: none;
+}
+
+/* Profile */
+.svc-hero__side .svc-card--profile{
+  position: relative;
+  background: #f6f8f9;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 18px;
+
+  /* Platz für den Avatar + angenehmer Abstand */
+  padding: 64px 18px 26px;
+  text-align: center;
+}
+
+.svc-card--profile .svc-profile__name{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+
+.svc-card--profile .svc-profile__sub{
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin: 0 0 6px;
+}
+
+.svc-card--profile .svc-profile__tagline{
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .65;
+  margin: 0 0 12px;
+}
+
+.svc-card--profile .svc-profile__text{
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  opacity: .85;
+  margin: 0 0 16px;
+}
+
+.svc-card--profile .svc-profile__btn{
+  width: auto;
+  min-width: 200px;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+
+.svc-card--profile .svc-profile__avatar{
+  position: relative;
+  overflow: hidden;
+}
+
+.svc-card--profile .svc-profile__avatar img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  display: block;
+}
+
+
+.svc-card--profile{
+  position: relative;
+  padding-top: 70px; 
+}
+
+.svc-card--profile .svc-profile__avatar{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.10);
+}
+
+.svc-hero__side .svc-card--profile { margin-top: 4.5rem;}
+
+
+/* === AVATAR QUALITY FIX === */
+.svc-card--profile .svc-profile__avatar img{
+  transform: none !important;          
+  position: static !important;         
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ===== Service Sections (after hero) ===== */
+
+.svc-sections{
+  padding: 10px 0 70px;
+}
+
+.svc-sections__container{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+.svc-section{
+  margin-bottom: 28px;
+}
+
+/* (h2) */
+.svc-section__title{
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+
+.svc-section__content{
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 820px;
+}
+
+.svc-section__content p{
+  margin: 0 0 12px;
+}
+
+/* Bullets */
+.svc-bullets{
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 820px;
+}
+
+.svc-bullets__item{
+  position: relative;
+  padding-left: 18px;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.svc-bullets__item:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #6a96a5;
+  transform: translateY(-50%);
+}
+
+/* Fullwidth image block */
+.svc-section--image{
+  margin: 26px 0 26px;
+}
+
+.svc-section--image img{
+  width: 100%;
+  height: auto;
+  display: block;
+  
+}
+
+/* Inline CTA */
+.svc-section--cta{
+  margin: 28px 0 34px;
+  display: flex;
+  align-items: center;
+}
+
+.svc-section--cta .svc-btn{
+  min-width: 260px;
+}
+
+/* Quote */
+.svc-section--quote{
+  margin: 26px 0 26px;
+  padding: 18px 18px;
+  border-left: 4px solid #6a96a5;
+  background: #f6f8f9;
+  border-radius: 12px;
+  max-width: 900px;
+}
+
+.svc-quote__text{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.svc-quote__author{
+  display: block;
+  margin-top: 10px;
+  opacity: .75;
+  font-style: normal;
+  font-size: 13px;
+}
+
+/* Steps */
+.svc-steps{
+  margin: 16px 0 0;
+  padding-left: 18px;
+  max-width: 900px;
+}
+
+.svc-steps__item{
+  margin: 0 0 14px;
+}
+
+.svc-steps__title{
+  margin: 0 0 6px;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.svc-steps__text{
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: .95;
+}
+
+.svc-steps__text p{
+  margin: 0 0 10px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .svc-section__title{ font-size: 26px; }
+  .svc-section__content{ max-width: 100%; }
+  .svc-bullets{ max-width: 100%; }
+  .svc-steps{ max-width: 100%; }
+}
+
+/* ===== Service FAQ (Accordion) ===== */
+
+.svc-faq{
+  padding: 0 0 70px;
+}
+
+.svc-faq__container{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.svc-faq__grid{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.svc-faq__title{
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+/* Liste rechts */
+.svc-faq__list{
+  border-left: 1px solid rgba(0,0,0,0.10); 
+  padding-left: 22px;
+}
+
+.svc-faq__item{
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.svc-faq__btn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 16px 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.svc-faq__q{
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.svc-faq__icon{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  position: relative;
+  opacity: .6;
+}
+
+/* Pfeil nach unten */
+.svc-faq__icon:before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+
+.svc-faq__panel{
+  display: none;
+  padding: 0 0 16px 0;
+}
+
+.svc-faq__a{
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: .95;
+  max-width: 820px;
+}
+
+.svc-faq__a p{
+  margin: 0 0 10px;
+}
+
+
+.svc-faq__item.is-open .svc-faq__panel{
+  display: block;
+}
+
+.svc-faq__item.is-open .svc-faq__icon:before{
+  transform: rotate(-135deg); 
+}
+
+
+.svc-faq__btn:focus-visible{
+  outline: 2px solid rgba(106,150,165,0.55);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+@media (max-width: 980px){
+  .svc-faq__grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .svc-faq__list{
+    padding-left: 16px;
+  }
+}
+
+/* ===== Service: image rule (alignment now handled by .svc-sticky-scope) ===== */
+
+.svc-section--image img{
+  width: 100%;
+}
+
+/* ===== Service: sticky sidebar spanning Hero + Sections + FAQ ===== */
+
+.svc-card--profile {
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 981px){
+  .svc-sticky-scope {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .svc-sticky-scope > .svc-hero,
+  .svc-sticky-scope > .svc-sections,
+  .svc-sticky-scope > .svc-faq {
+    grid-column: 1;
+  }
+
+  .svc-sticky-scope > .svc-hero__side {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    position: static;
+    align-self: start;
+  }
+
+  .svc-sticky-scope .svc-hero__container,
+  .svc-sticky-scope .svc-sections__container,
+  .svc-sticky-scope .svc-faq__container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .svc-sticky-scope .svc-sections__container,
+  .svc-sticky-scope .svc-faq__container {
+    display: block;
+  }
+}
+
+@media (max-width: 980px) {
+  .svc-hero__side {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 981px){
+  .svc-faq__grid{
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+  }
+}
+
+/* unified list styles */
+.svc-list{
+  margin: 14px 0 0;
+  max-width: 820px;
+  padding-left: 22px;
+}
+
+.svc-list__item{
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+/* ul with custom dots (если хочешь как раньше) */
+.svc-list--ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.svc-list--ul .svc-list__item{
+  position: relative;
+  padding-left: 18px;
+}
+
+.svc-list--ul .svc-list__item:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #6a96a5;
+  transform: translateY(-50%);
+}
+
+/* ol numbering */
+.svc-list--ol{
+  list-style: decimal;
+  padding-left: 22px;
+}
+
+/* subblocks spacing */
+.svc-subblock{
+  margin-top: 18px;
+}
+
+.svc-subblock:first-child{
+  margin-top: 12px;
+}
+
+.svc-subblock__title{
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.svc-subblock__intro{
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 820px;
+}
+
+.svc-subblock__intro p{
+  margin: 0 0 12px;
+}
+
+/* === Normalize h3 inside service content === */
+.svc-section__content h3{
+  margin: 18px 0 8px;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.svc-subblock__title span{
+  font-weight: inherit !important;
+}
+
+.svc-section--bullets .svc-section__content h3,
+.svc-section--bullets .svc-section__content h3 span{
+  font-weight: 700 !important;
+}
+
+
+
+/* FAQ subtitle (zur …) */
+.svc-faq__subtitle{
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: .65;
+}
+
+/* ===== Service: unify vertical spacing (safe, no * and no !important) ===== */
+
+/* 1) общий отступ между блоками (article/div внутри .svc-sections__container) */
+.service-page .svc-sections__container > .svc-section,
+.service-page .svc-sections__container > .svc-section--cta,
+.service-page .svc-sections__container > figure.svc-section--image{
+  margin: 0 0 22px;
+}
+
+/* 2) убираем "большие" внешние отступы секций, чтобы тема не добавляла лишнего */
+.service-page .svc-sections{
+  padding: 0;
+  margin: 0;
+}
+
+.service-page .svc-faq{
+  padding: 0 0 50px;
+  margin: 0;
+}
+
+/* 3) нормализуем маргины внутри контента */
+.service-page .svc-section__content > p{
+  margin: 0 0 12px;
+}
+
+.service-page .svc-section__content > h3{
+  margin: 16px 0 10px;
+}
+
+/* если h3 приходит со span style="font-weight:400" — это уже решено, но оставим аккуратно */
+.service-page .svc-section__content h3 span[style*="font-weight"]{
+  font-weight: 700;
+}
+
+/* 4) списки: одинаковый отступ сверху */
+.service-page .svc-section__content + .svc-list,
+.service-page .svc-section__content + .svc-bullets,
+.service-page .svc-section__content + .svc-steps{
+  margin-top: 12px;
+}
+
+.service-page .svc-list,
+.service-page .svc-bullets,
+.service-page .svc-steps{
+  margin-bottom: 0;
+}
+
+/* 5) Subblocks: чтобы не давали разный "воздух" */
+.service-page .svc-subblocks{
+  margin-top: 16px;
+}
+
+.service-page .svc-subblock{
+  margin-top: 18px;
+}
+.service-page .svc-subblock:first-child{
+  margin-top: 0;
+}
+
+/* 6) перед FAQ — небольшой, одинаковый отступ */
+.service-page .svc-sections + .svc-faq{
+  margin-top: 10px;
+}
+
+.service-page .svc-section__title{
+  margin: 0 0 12px;
+}
+
+
+/* === Service page: Quote styling for BLOCKQUOTE (final) === */
+.service-page blockquote{
+  position: relative;
+  margin: 26px 0;
+  padding: 22px 26px 22px 72px; /* место под кавычки */
+  background: #f6f8f9;
+  border-radius: 12px;
+
+  border: 0;        /* убираем возможную рамку темы */
+}
+
+.service-page blockquote::before{
+  content: "“";
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  font-size: 64px;
+  line-height: 1;
+  color: #6a96a5;
+  font-weight: 700;
+  opacity: .9;
+}
+
+/* важно: тема часто задаёт blockquote p свои маргины */
+.service-page blockquote p{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* если внутри редактор оборачивает в span со стилями */
+.service-page blockquote p span{
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+
+.service-page .svc-list{
+  background: #f6f8f9;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 14px 0 0;
+}
+
+ol.svc-list.svc-list--ol {
+    padding: 14px 35px;
+}
+
+
+.svc-faq__panel{
+  overflow: hidden;
+  transition: max-height 250ms ease;
+}
+.svc-faq__panel{
+  display: block !important;
+}
+
+.svc-faq__panel[hidden]{
+  display: none !important;
+}
+.svc-faq__panel{
+  overflow: hidden;
+  transition: max-height 250ms ease;
+}
+
+
+
+.quote-author {
+  display: flex;
+  align-items: center;      /* вертикальное выравнивание */
+  justify-content: flex-end;/* справа, как и было */
+  gap: 10px;
+  text-align: right;
+}
+
+.quote-author__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.svc-faq {
+  margin-top: 48px!important;
+}
+
+/* Kontakt: nur Hintergrund + seitliche Abstände (stabil) */
+/* Kontakt (DE) + Contact (EN) */
+#menu-item-1414 > a,
+#menu-item-1848 > a {
+  background-color: #6a96a5;
+  color: #fff !important;
+  padding: 0px 20px !important;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+#menu-item-1414 > a:hover,
+#menu-item-1848 > a:hover {
+  color: #fff;
+  background: #5a8391;
+}
+
+
+/* H1: 2 строки внутри одного заголовка */
+.svc-hero__title{
+  margin: 0 0 18px;
+  line-height: 1.15;
+}
+
+.svc-hero__title-main{
+  display: block;         /* перенос на новую строку */
+  color: #6a96a5;         /* синий */
+  font-weight: 700;       /* жирный */
+}
+
+.svc-hero__title-sub{
+  display: block;         /* перенос на новую строку */
+  margin-top: 8px;
+  color: #222;            /* чёрный/тёмный */
+  font-weight: 400;       /* не жирный */
+  font-size: 28px;       /* чтобы было меньше основного */
+  line-height: 1.35;
+}
+
+h2 {
+  color: #6a96a5;
+  font-weight: 700;
+}
+
+
+/* Startseite: "über mich"-Button wie die anderen Buttons */
+.home .button a,
+.home a.button,
+.home .text p span.button a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;      /* anpassen an deine Standardbuttons */
+  padding: 12px 26px;       /* anpassen */
+  font-size: 17px;          /* anpassen */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+ .svc-hero__title {
+  word-break: break-word;
+  overflow-wrap: break-word;
+	 hyphens: auto; 
+} 
+
+
+
+
+
+/* ===== Wissen (Pages Grid) ===== */
+.wissen-container{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wissen-hero{ padding: 28px 0 10px; }
+
+.wissen-kicker{
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .65;
+  margin: 0 0 10px;
+}
+
+.wissen-title{
+  margin: 0 0 18px;
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  text-align: center;
+}
+
+.wissen-list{ padding: 12px 0 70px; }
+
+.wissen-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.wissen-card{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.wissen-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+
+.wissen-card__img{
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.wissen-card__img--placeholder{
+  background: #e6e6e6;
+}
+
+.wissen-card__body{ padding: 12px 2px 0; }
+
+.wissen-card__title{
+  margin: 10px 0 8px;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #6a96a5;
+  text-decoration: none;
+}
+
+.wissen-card:hover .wissen-card__title{
+  text-decoration: underline;
+}
+
+.wissen-card__excerpt{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #444;
+}
+
+@media (max-width: 980px){
+  .wissen-title{ font-size: 36px; }
+}
+@media (max-width: 720px){
+  .wissen-grid{ grid-template-columns: 1fr; }
+  .wissen-card__img{ height: 210px; }
+}
+
+.wissen-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+
+.sub-memberships {
+  margin-top: 8px;        /* небольшой отступ сверху */
+  margin-left: 25px;      /* сдвиг вправо */
+  list-style-type: circle; /* другие точки */
+}
+
+.sub-memberships li {
+  margin-bottom: 4px;     /* расстояние между пунктами */
+}
+
+
+
+
+/* Убираем два пустых спейсера перед нижним CTA на главной */
+body.home .s_text + .bgwhite .padding,
+body.home .s_text + .bgwhite + .bgwhite .padding {
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+
+/* =========================================================
+   Ortho Faschingbauer – Anatomy blocks (unique)
+   ========================================================= */
+
+/* ---- Knee ---- */
+.of-anatomy-knee{
+  background: #f6f8f9;
+  border-radius: 12px;
+  padding:48px 0;
+}
+.of-anatomy-knee__wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  gap:56px;
+  align-items:center;
+}
+.of-anatomy-knee__left{flex:1;min-width:320px;}
+.of-anatomy-knee__right{flex:1;display:flex;justify-content:center;}
+.of-anatomy-knee__kicker{
+  font-size:14px;
+  letter-spacing:.02em;
+  color:#6d7b84;
+  margin:0 0 8px;
+}
+.of-anatomy-knee__title{
+  font-size:30px;
+  line-height:1.1;
+  margin:0 0 18px;
+  color:#6fa3b2;
+  font-weight:700;
+}
+.of-anatomy-knee__text{
+  font-size:17px;
+  line-height:1.7;
+  color:#2b2f33;
+  margin:0 0 18px;
+  max-width:560px;
+}
+.of-anatomy-knee__list{
+  margin:0;
+  padding-left:18px;
+  color:#2b2f33;
+  font-size:16px;
+  line-height:1.75;
+}
+.of-anatomy-knee__list li{margin:2px 0;}
+.of-anatomy-knee__img{
+  width:min(520px,100%);
+  height:auto;
+  display:block;
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+@media (max-width:980px){
+  .of-anatomy-knee__wrap{flex-direction:column;gap:28px;align-items:stretch;}
+  .of-anatomy-knee__title{font-size:34px;}
+  .of-anatomy-knee__right{justify-content:flex-start;}
+}
+
+/* ---- Hip ---- */
+.of-anatomy-hip{
+  background: #f6f8f9;
+  border-radius: 12px;
+  padding:48px 0;
+}
+.of-anatomy-hip__wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  gap:56px;
+  align-items:center;
+}
+.of-anatomy-hip__left{flex:1;min-width:320px;}
+.of-anatomy-hip__right{flex:1;display:flex;justify-content:center;}
+.of-anatomy-hip__kicker{
+  font-size:14px;
+  letter-spacing:.02em;
+  color:#6d7b84;
+  margin:0 0 8px;
+}
+.of-anatomy-hip__title{
+  font-size:30px;
+  line-height:1.1;
+  margin:0 0 18px;
+  color:#6fa3b2;
+  font-weight:700;
+}
+.of-anatomy-hip__text{
+  font-size:17px;
+  line-height:1.7;
+  color:#2b2f33;
+  margin:0 0 18px;
+  max-width:560px;
+}
+.of-anatomy-hip__list{
+  margin:0;
+  padding-left:18px;
+  color:#2b2f33;
+  font-size:16px;
+  line-height:1.75;
+}
+.of-anatomy-hip__list li{margin:2px 0;}
+.of-anatomy-hip__img{
+  width:min(520px,100%);
+  height:auto;
+  display:block;
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+@media (max-width:980px){
+  .of-anatomy-hip__wrap{flex-direction:column;gap:28px;align-items:stretch;}
+  .of-anatomy-hip__title{font-size:34px;}
+  .of-anatomy-hip__right{justify-content:flex-start;}
+}
+
+
+
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-break {
+    display: inline;
+  }
+}
+
+/* Service page: Wissen-cards look like Wissen */
+.service-page .wissen-card{
+  background: #f6f8f9;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: none;
+}
+
+.service-page .wissen-card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+
+
+
+
+/* Home H1: align to header container */
+.home-h1-block .wrap-main{
+  max-width: 1900px;      /* если у wrap wide другое — поменяем */
+  margin: 0 auto;
+  padding: 0 30px;        /* обычно wide имеет больше паддинг */
+  box-sizing: border-box;
+}
+
+/* немного воздуха сверху/снизу */
+.home-h1-block{
+  padding: 20px 0 12px;
+}
+
+/* ===== Kontakt: десктоп (карта = высота левой колонки) ===== */
+.kontakt-fix .kontakt-grid{
+  align-items: stretch;
+}
+
+.kontakt-fix .kontakt-map__frame{
+  overflow: hidden;
+}
+
+.kontakt-fix .kontakt-map,
+.kontakt-fix .kontakt-map__frame,
+.kontakt-fix .kontakt-map__frame .video{
+  height: 100%;
+}
+
+/* убираем padding-bottom/aspect-ratio из темы */
+.kontakt-fix .kontakt-map__frame .video{
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.kontakt-fix .kontakt-map__frame iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ===== Kontakt: мобилка ===== */
+@media (max-width: 900px){
+  .kontakt-fix .kontakt-grid{
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  /* на мобилке фиксируем высоту карты */
+  .kontakt-fix .kontakt-map__frame .video{
+    height: 320px;
+  }
+}
+
+.fb-orf,
+.fb-orf * {
+  box-sizing: border-box;
+}
+
+.fb-orf {
+  background: #ffffff;
+  padding: 5px 24px 80px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #2d2d2d;
+  width: 100%;
+}
+
+.fb-orf__inner {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Левая колонка */
+
+.fb-orf__eyebrow {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin: 0 0 16px;
+}
+
+.fb-orf__headline {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #2d2d2d;
+  margin: 0 0 10px;
+}
+
+.fb-orf__headline strong {
+  font-weight: 600;
+  color: #5a8fa3;
+}
+
+.fb-orf__sub {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6ba3b8;
+  margin: 0 0 24px;
+  letter-spacing: 0.01em;
+}
+
+.fb-orf__divider {
+  width: 40px;
+  height: 2px;
+  background: #6ba3b8;
+  margin: 0 0 24px;
+  border-radius: 1px;
+}
+
+.fb-orf__text {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #555555;
+  margin: 0 0 32px;
+}
+
+.fb-orf__cta-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5a8fa3;
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+
+/* Контакты */
+
+.fb-orf__contacts {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.fb-orf__contact {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 15px;
+  color: #2d2d2d;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.fb-orf__contact a,
+.fb-orf__contact span {
+  margin: 0 !important;
+  padding-top: 0 !important;
+  line-height: 1.4 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.fb-orf__contact a {
+  color: #5a8fa3;
+  text-decoration: none;
+  border-bottom: 1px solid #b8d4df;
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.fb-orf__contact a:hover {
+  color: #3a7090;
+  border-color: #3a7090;
+}
+
+.fb-orf__contact-icon {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid #b8d4df !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+  transform: none !important;
+}
+
+.fb-orf__contact-icon svg {
+  display: none !important;
+}
+
+.fb-orf__contact-icon::before {
+  content: "";
+  display: block !important;
+  background-color: #5a8fa3;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+/* Иконка e-mail — чуть больше */
+.fb-orf__contact:first-child .fb-orf__contact-icon::before {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zm0 2v.3l8 5.1 8-5.1V8H4zm16 8V10.7l-7.45 4.75a1 1 0 0 1-1.1 0L4 10.7V16h16z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zm0 2v.3l8 5.1 8-5.1V8H4zm16 8V10.7l-7.45 4.75a1 1 0 0 1-1.1 0L4 10.7V16h16z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* Иконка трубки — чуть меньше */
+.fb-orf__contact:nth-child(2) .fb-orf__contact-icon::before {
+  width: 13px;
+  height: 13px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1.5 1.5 0 0 1 1.52-.36 11.36 11.36 0 0 0 3.56.57A1.51 1.51 0 0 1 22 16.9v3.59A1.51 1.51 0 0 1 20.49 22 18.49 18.49 0 0 1 2 3.51 1.51 1.51 0 0 1 3.51 2H7.1A1.51 1.51 0 0 1 8.61 3.51a11.36 11.36 0 0 0 .57 3.56 1.5 1.5 0 0 1-.36 1.52l-2.2 2.2z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1.5 1.5 0 0 1 1.52-.36 11.36 11.36 0 0 0 3.56.57A1.51 1.51 0 0 1 22 16.9v3.59A1.51 1.51 0 0 1 20.49 22 18.49 18.49 0 0 1 2 3.51 1.51 1.51 0 0 1 3.51 2H7.1A1.51 1.51 0 0 1 8.61 3.51a11.36 11.36 0 0 0 .57 3.56 1.5 1.5 0 0 1-.36 1.52l-2.2 2.2z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* Правая карточка */
+
+.fb-orf__card {
+  background: #f0f5f7;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fb-orf__card-header {
+  background: #5a8fa3;
+  padding: 24px 28px 20px;
+}
+
+.fb-orf__logo-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.fb-orf__orf-logo {
+  height: 125px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 3px;
+  display: block;
+  background: #ffffff;
+}
+
+.fb-orf__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #ffffff !important;
+}
+
+.fb-orf__logo-text span,
+.fb-orf__logo-text span:first-child,
+.fb-orf__logo-text span:last-child {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.fb-orf__logo-text span:first-child {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.fb-orf__logo-text span:last-child {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.fb-orf__card-title {
+  font-size: 20px;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.fb-orf__card-title strong {
+  font-weight: 600;
+  display: block;
+}
+
+.fb-orf__card-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid #dde8ec;
+}
+
+.fb-orf__meta-item {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-right: 1px solid #dde8ec;
+}
+
+.fb-orf__meta-item:last-child {
+  border-right: none;
+}
+
+.fb-orf__meta-lbl {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8aafbe;
+  font-weight: 400;
+}
+
+.fb-orf__meta-val {
+  font-size: 15px;
+  font-weight: 600;
+  color: #3a6e85;
+}
+
+/* Countdown */
+
+.fb-orf__countdown {
+  padding: 20px 20px 24px;
+}
+
+.fb-orf__cd-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8aafbe;
+  margin: 0 0 14px;
+  font-weight: 400;
+}
+
+.fb-orf__cd-boxes {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.fb-orf__cd-box {
+  background: #ffffff;
+  border: 1px solid #d0e3ea;
+  border-radius: 3px;
+  padding: 12px 6px 10px;
+  text-align: center;
+}
+
+.fb-orf__cd-num {
+  font-size: 26px;
+  font-weight: 600;
+  color: #5a8fa3;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.fb-orf__cd-lbl {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ab8c4;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.fb-orf__cd-sep {
+  font-size: 20px;
+  color: #9ab8c4;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+/* Если родительская колонка темы сжимает блок */
+.col-xs-12:has(.fb-orf),
+.col-s-12:has(.fb-orf),
+.col-sm-10:has(.fb-orf),
+.col-m-8:has(.fb-orf),
+.col-ml-8:has(.fb-orf),
+.col-l-8:has(.fb-orf),
+.col-xl-8:has(.fb-orf) {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .fb-orf {
+    padding: 55px 0px 70px;
+  }
+
+  .fb-orf__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .fb-orf__headline {
+    font-size: 26px;
+  }
+
+  .fb-orf__cd-num {
+    font-size: 20px;
+  }
+
+  .fb-orf__meta-item {
+    padding: 12px 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .fb-orf__logo-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fb-orf__orf-logo {
+    height: auto;
+    width: 100%;
+  }
+
+  .fb-orf__card-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .fb-orf__meta-item {
+    border-right: none;
+    border-bottom: 1px solid #dde8ec;
+  }
+
+  .fb-orf__meta-item:last-child {
+    border-bottom: none;
+  }
+
+  .fb-orf__cd-boxes {
+    gap: 4px;
+  }
+
+  .fb-orf__cd-num {
+    font-size: 18px;
+  }
+
+  .fb-orf__cd-sep {
+    font-size: 16px;
+  }
+}
+
+.fb-orf__contact p {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.fb-orf__contact {
+  align-items: center !important;
+}
+
+
+/* ===== Service Reviews (Sidebar-Karte, unter dem Profil) ===== */
+.svc-reviews__viewport {
+  position: relative;
+  margin-top: 4px;
+}
+
+.svc-reviews__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.svc-reviews__track::-webkit-scrollbar {
+  display: none;
+}
+
+.svc-reviews__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.svc-reviews__stars {
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.svc-reviews__stars-filled {
+  color: #ffc107;
+}
+
+.svc-reviews__stars-empty {
+  color: #e0e0e0;
+}
+
+.svc-reviews__text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  opacity: .9;
+}
+
+.svc-reviews__author {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .75;
+}
+
+.svc-reviews__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 6px;
+}
+
+.svc-reviews__arrow {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.svc-reviews__arrow:hover {
+  background: #6a96a5;
+  color: #fff;
+  border-color: #6a96a5;
+}
+
+.svc-reviews__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.svc-reviews__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0,0,0,.15);
+  cursor: pointer;
+  padding: 0;
+}
+
+.svc-reviews__dot.is-active {
+  background: #6a96a5;
+}
+
+/* ===== Sidebar Schwerpunkte link list (Ueber mich page) ===== */
+.svc-linklist {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.svc-linklist__item {
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.svc-linklist__thumb {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.svc-linklist__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.svc-linklist__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.svc-linklist__title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.svc-linklist__excerpt {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: .75;
+}
+
+.svc-linklist__item:hover .svc-linklist__title {
+  text-decoration: underline;
+}
+
+/* ===== Service Section: Form layout (helle Optik, konsistent mit Rückrufbox/Kontaktseite) ===== */
+.svc-section--form {
+  margin: 0 auto;
+}
+
+.svc-form {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #f6f8f9;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 28px;
+  padding: 32px 36px;
+}
+
+.svc-form form {
+  margin: 0;
+}
+
+.svc-form__title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #6a96a5;
+  letter-spacing: -0.02em;
+}
+
+.svc-form__teaser {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .8;
+}
+
+/* WS-Form-Styler-Variablen nur innerhalb dieser Box überschrieben (gleiche Optik wie Rückrufbox/Kontaktseite) */
+.svc-form [data-wsf-style-id] {
+  --wsf-field-border-radius: 9px;
+  --wsf-field-border-color: #e1e1e1;
+  --wsf-field-border-color-hover: #e1e1e1;
+  --wsf-field-padding-vertical: 18px;
+  --wsf-field-padding-horizontal: 18px;
+  --wsf-field-button-font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .svc-form {
+    padding: 24px 22px;
+    border-radius: 20px;
+  }
+}
+
+/* ===== Blog Article: narrower reading column ===== */
+.blog-article {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ===== Blog Article: author / medical review box ===== */
+.blog-authorbox {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-top: 40px;
+  padding: 20px;
+  background: #f6f8f9;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+}
+
+.blog-authorbox__photo {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.blog-authorbox__name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.blog-authorbox__bio {
+  font-size: 13.5px;
+  line-height: 1.6;
+  opacity: .85;
+  margin: 0 0 10px;
+}
+
+.blog-authorbox__reviewed {
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-style: italic;
+  opacity: .75;
+  margin: 0 0 12px;
+}
+
+.blog-authorbox__link {
+  display: inline-flex;
+  width: auto;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .blog-authorbox {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ===== Kooperationen: Partner-Logos & Fotos im Fließtext ===== */
+.svc-section__content .svc-partner-logo {
+  display: inline-block;
+  height: 56px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 14px 16px 6px 0;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.svc-section__content .svc-partner-photo {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 14px;
+  margin: 16px 0 6px;
+}
+
+.svc-section__content .svc-partner-photo--full {
+  max-width: 100%;
+}
+
+.svc-section__content a:has(> .svc-partner-logo),
+.svc-section__content a:has(> .svc-partner-photo) {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .svc-section__content .svc-partner-logo {
+    display: block;
+    height: 44px;
+    margin: 12px 0;
+  }
+  .svc-section__content .svc-partner-photo {
+    max-width: 100%;
+  }
+}
+
+/* ===== Kooperationen: Aufzählungslisten in Fließtext-Abschnitten ===== */
+.svc-section__content ul {
+  margin: 14px 0 1rem;
+  padding-left: 4px;
+  list-style: none;
+}
+
+.svc-section__content ul li {
+  position: relative;
+  margin: 0 0 10px;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.svc-section__content ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #6a96a5;
+  transform: translateY(-50%);
+}
+
+.svc-section__content ol {
+  margin: 14px 0 1rem;
+  padding-left: 22px;
+}
+
+.svc-section__content ol li {
+  list-style-type: decimal;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+
+/* ===== Blog Article: Rückruf-CTA (Optik an /knie-endoprothetik-spezialist/ Landingpage angepasst) ===== */
+.blog-callbackbox {
+  margin-top: 24px;
+  padding: 32px 36px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 28px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.04);
+}
+
+.blog-callbackbox__title {
+  color: #6a96a5;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.blog-callbackbox__subtitle {
+  font-size: 13.5px;
+  line-height: 1.6;
+  opacity: .8;
+  margin: 0 0 18px;
+}
+
+/* WS-Form-Styler-Variablen nur innerhalb dieser Box überschrieben (Standard-Light-Style bleibt sitewide unangetastet) */
+.blog-callbackbox [data-wsf-style-id] {
+  --wsf-field-border-radius: 9px;
+  --wsf-field-border-color: #e1e1e1;
+  --wsf-field-border-color-hover: #e1e1e1;
+  --wsf-field-padding-vertical: 18px;
+  --wsf-field-padding-horizontal: 18px;
+  --wsf-field-button-font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .blog-callbackbox {
+    padding: 24px 22px;
+    border-radius: 20px;
+  }
+}
+
+
+
+
+
+/* KOSMAS: svc-hero-side-spacing (added via automation) */
+.svc-hero__side {
+  margin-top: 24px;
+}
+
+
+/* ===== KOSMAS: Netzwerk-Raster (Kooperationen & Netzwerk) ===== */
+.netzwerk-section{ padding: 10px 0 40px; }
+
+.netzwerk-container{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.netzwerk-category{ margin-bottom: 40px; }
+.netzwerk-category:last-child{ margin-bottom: 0; }
+
+.netzwerk-category__title{ margin: 0 0 18px; }
+
+.netzwerk-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.netzwerk-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+a.netzwerk-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+
+.netzwerk-card__logo{
+  height: 44px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  align-self: flex-start;
+}
+
+.netzwerk-card__body{ display: flex; flex-direction: column; gap: 6px; }
+
+.netzwerk-card__name{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #6a96a5;
+}
+
+.netzwerk-card__desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.netzwerk-card__link{
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6a96a5;
+}
+
+a.netzwerk-card:hover .netzwerk-card__name{ text-decoration: underline; }
+
+@media (max-width: 980px){
+  .netzwerk-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px){
+  .netzwerk-grid{ grid-template-columns: 1fr; }
+}
+
+
+/* KOSMAS: sidebar-no-scroll — sticky sidebar must never get its own scrollbar */
+.svc-hero__side {
+  overflow: visible;
+  max-height: none;
+}
+
+
+
+/* ===== KOSMAS: Rezensionen-Carousel (Startseite) ===== */
+/* Eigenes padding-top statt .padding-Spacer-Divs: eine Legacy-Regel
+   ("body.home .s_text + .bgwhite + .bgwhite .padding") nullt sonst
+   mit !important jeden Abstand, weil dieser Block jetzt die 2. bgwhite-
+   Sektion in der Sibling-Kette nach .s_text ist. */
+.s_reviews {
+  padding-top: 60px;
+}
+
+.s_reviews .reviews-carousel {
+  padding: 10px 0 20px;
+}
+
+.review-card {
+  background: #f8fafa;
+  border-radius: 8px;
+  padding: 30px 35px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-card__stars {
+  color: #6a96a5;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin: 0 0 12px;
+}
+
+.review-card__text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #3d3e43;
+  margin: 0 0 15px;
+}
+
+.review-card__name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #6a96a5;
+  margin: 0;
+}
+
+.reviews-carousel .owl-dots {
+  position: static;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.reviews-carousel .owl-dots .owl-dot span {
+  background: #6a96a5;
+  opacity: 0.3;
+}
+
+.reviews-carousel .owl-dots .owl-dot.active span,
+.reviews-carousel .owl-dots .owl-dot:hover span {
+  background: #6a96a5;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .review-card {
+    padding: 25px 25px;
+    min-height: 0;
+  }
+}
+
+
+
+/* ===== KOSMAS: CLS-Fix Hero-Slider =====
+   owl.carousel.min.css versteckt .owl-carousel per display:none bis JS
+   die Klasse .owl-loaded setzt. Ohne reservierten Platz auf dem äußeren
+   Wrapper (der NICHT display:none hat) springt der gesamte Inhalt danach
+   nach unten (gemessene CLS: 0.621, Hauptverursacher). */
+.s_bild .wrap.full {
+  aspect-ratio: 1920 / 768;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .s_bild .wrap.full {
+    aspect-ratio: 840 / 700;
+  }
+}
+
+
+

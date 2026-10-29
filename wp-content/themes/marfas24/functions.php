@@ -164,6 +164,27 @@ add_action('wp_enqueue_scripts', function () {
 }, 5);
 
 /**
+ * Service- und Leistungsseiten.
+ *
+ * Diese Stile lagen bis zum 29.10.2026 als "Zusaetzliches CSS" im Customizer
+ * und wurden von WordPress spaet im head ausgegeben: nach global-styles und
+ * nach Borlabs, vor WS Form. Priorität 20 stellt dieselbe Position her.
+ * Mit der Priorität 5 des Blocks darueber landeten sie vor global-styles und
+ * koennten von dort ueberschrieben werden.
+ */
+add_action('wp_enqueue_scripts', function () {
+
+  $path = get_template_directory() . '/css/services.css';
+  wp_enqueue_style(
+    'marfas24-services',
+    get_template_directory_uri() . '/css/services.css',
+    ['marfas24-style'],
+    file_exists($path) ? filemtime($path) : null
+  );
+
+}, 20);
+
+/**
  * Remove Gutenberg CSS on frontend
  */
 function tigris_remove_wp_block_library_css() {
