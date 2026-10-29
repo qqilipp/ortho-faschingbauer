@@ -115,7 +115,7 @@ if (
     body {
       margin: 0;
       padding: 0;
-      background: #f3f3f3 !important;
+      background: #ffffff !important;
     }
 
     body {
@@ -130,7 +130,7 @@ if (
     }
 
     .lp-page {
-      width: 1024px;
+      width: 1180px;
       max-width: 100%;
       margin: 0 auto;
       background: #ffffff;
@@ -411,7 +411,7 @@ if (
 
     .lp-page .lp-expert-card-wrap {
       position: relative;
-      max-width: 880px;
+      max-width: 1060px;
       margin: 0 auto;
       padding-top: 58px;
     }
@@ -533,7 +533,7 @@ if (
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px 26px;
-      max-width: 700px;
+      max-width: 900px;
     }
 
     .lp-page .lp-symptom-card {
@@ -620,7 +620,7 @@ if (
     }
 
     .lp-page .lp-cta-card {
-      max-width: 820px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 34px 56px 40px;
       border-radius: var(--radius-card);
@@ -851,10 +851,10 @@ if (
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      width: 1024px;
+      width: 1180px;
       max-width: 100%;
       padding: 10px 20px;
-      background: #f3f3f3;
+      background: #ffffff;
       transform: translateX(-50%);
     }
 
