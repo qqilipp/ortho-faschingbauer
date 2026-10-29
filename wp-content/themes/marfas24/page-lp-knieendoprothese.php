@@ -920,28 +920,71 @@ if (
       font-family: 'Figtree', Arial, sans-serif !important;
     }
 
+    /* Telefon ist primaer gestaltet: ueber Juli bis Oktober 2026 standen
+       101 Telefonklicks gegen 81 Formular-Events. */
     .lp-fixed-action {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       height: 58px;
+      padding: 0 10px;
       border: 1px solid #6A96A5;
       border-radius: 8px;
-      background: #ffffff;
-      color: #6A96A5;
+      background: #6A96A5;
+      color: #ffffff;
       text-decoration: none;
     }
 
-    .lp-fixed-action.lp-fixed-action-email {
-      background: #6A96A5;
-      color: #ffffff;
+    .lp-fixed-action.lp-fixed-action-form {
+      background: #ffffff;
+      color: #6A96A5;
     }
 
     .lp-fixed-action svg {
       display: block;
-      width: 32px;
-      height: 32px;
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
       fill: currentColor;
+    }
+
+    .lp-fixed-action-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+      text-align: left;
+    }
+
+    .lp-fixed-action-label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .lp-fixed-action-sub {
+      font-size: 13px;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 420px) {
+      .lp-fixed-action {
+        gap: 7px;
+        padding: 0 6px;
+      }
+
+      .lp-fixed-action svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .lp-fixed-action-label {
+        font-size: 14px;
+      }
+
+      .lp-fixed-action-sub {
+        font-size: 11px;
+      }
     }
 
     #wp-phone-fab {
@@ -1550,16 +1593,24 @@ if (
 </main>
 
 <div class="lp-fixed-footer">
-  <a class="lp-fixed-action lp-fixed-action-phone" href="tel:+431401807010" aria-label="Telefonisch anrufen">
+  <a class="lp-fixed-action lp-fixed-action-phone" href="tel:+431401807010">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
     </svg>
+    <span class="lp-fixed-action-text">
+      <span class="lp-fixed-action-label">Jetzt anrufen</span>
+      <span class="lp-fixed-action-sub">+43 1 40 180 &ndash; 7010</span>
+    </span>
   </a>
 
-  <a class="lp-fixed-action lp-fixed-action-email" href="#formular" aria-label="Zum Formular springen">
+  <a class="lp-fixed-action lp-fixed-action-form" href="#formular">
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
+      <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"></path>
     </svg>
+    <span class="lp-fixed-action-text">
+      <span class="lp-fixed-action-label">Termin anfragen</span>
+      <span class="lp-fixed-action-sub">Online-Formular</span>
+    </span>
   </a>
 </div>
 
