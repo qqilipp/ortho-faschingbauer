@@ -3,97 +3,6 @@
 Template Name: LP Knieendoprothese
 */
 
-/* $lp_form_recipient = get_option('admin_email'); */ 
-// Test recipient. Replace with the client's email after testing.
-$lp_form_recipient = 'praxis@ortho-faschingbauer.at';
-$lp_form_status = '';
-$lp_form_message = '';
-
-// lp_sent=1 heißt: wp_mail() war erfolgreich. Nur darauf darf der GTM-Trigger feuern.
-// lp_sent=hp ist der Honeypot-Fall: der Bot sieht dieselbe Meldung, versendet wird nichts.
-if (isset($_GET['lp_sent']) && in_array($_GET['lp_sent'], array('1', 'hp'), true)) {
-  $lp_form_status = 'success';
-  $lp_form_message = 'Vielen Dank. Ihre Anfrage wurde gesendet.';
-} elseif (isset($_GET['lp_error']) && $_GET['lp_error'] === '1') {
-  $lp_form_status = 'error';
-  $lp_form_message = 'Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.';
-}
-
-if (
-  $_SERVER['REQUEST_METHOD'] === 'POST'
-  && isset($_POST['lp_form_action'])
-  && $_POST['lp_form_action'] === 'lp_huefte_contact'
-) {
-  $lp_vorname = isset($_POST['lp_vorname']) ? sanitize_text_field(wp_unslash($_POST['lp_vorname'])) : '';
-  $lp_nachname = isset($_POST['lp_nachname']) ? sanitize_text_field(wp_unslash($_POST['lp_nachname'])) : '';
-  $lp_email = isset($_POST['lp_email']) ? sanitize_email(wp_unslash($_POST['lp_email'])) : '';
-  $lp_telefon = isset($_POST['lp_telefon']) ? sanitize_text_field(wp_unslash($_POST['lp_telefon'])) : '';
-  $lp_honeypot = isset($_POST['website']) ? trim((string) wp_unslash($_POST['website'])) : '';
-  $lp_form_time = isset($_POST['lp_form_time']) ? absint($_POST['lp_form_time']) : 0;
-  $lp_current_url = home_url(isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '/');
-  $lp_redirect_base = remove_query_arg(array(
-    'lp_form_action',
-    'lp_form_nonce',
-    'website',
-    'lp_vorname',
-    'lp_nachname',
-    'lp_email',
-    'lp_telefon',
-    'lp_form_time',
-    'lp_sent',
-    'lp_error',
-  ), $lp_current_url);
-
-  if (!isset($_POST['lp_form_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['lp_form_nonce'])), 'lp_huefte_contact')) {
-    $lp_form_status = 'error';
-    $lp_form_message = 'Die Anfrage konnte nicht verifiziert werden. Bitte versuchen Sie es erneut.';
-  } elseif ($lp_honeypot !== '') {
-    // Honeypot: dem Bot eine Erfolgsmeldung zeigen, aber nichts versenden und nichts zählen.
-    wp_safe_redirect(add_query_arg('lp_sent', 'hp', $lp_redirect_base) . '#formular');
-    exit;
-  } elseif ($lp_form_time === 0 || time() - $lp_form_time < 3) {
-    $lp_form_status = 'error';
-    $lp_form_message = 'Die Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.';
-  } elseif ($lp_nachname === '' || ($lp_email !== '' && !is_email($lp_email)) || !preg_match('/^[0-9+\-\s()\/]{6,20}$/', $lp_telefon)) {
-    $lp_form_status = 'error';
-    $lp_form_message = 'Bitte füllen Sie alle Felder aus und geben Sie eine gültige E-Mail Adresse sowie Telefonnummer ein.';
-  } else {
-    $lp_ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : 'unknown';
-    // Eigener Rate-Limit-Key je Landingpage. Vorher teilten sich Hüfte und Knie einen Key,
-    // dadurch sperrte eine Anfrage auf der einen Seite die andere fünf Minuten lang.
-    $lp_rate_key = 'lp_knie_rate_' . md5($lp_ip);
-
-    if (get_transient($lp_rate_key)) {
-      $lp_form_status = 'error';
-      $lp_form_message = 'Bitte warten Sie kurz, bevor Sie eine neue Anfrage senden.';
-    } else {
-      set_transient($lp_rate_key, 1, 5 * MINUTE_IN_SECONDS);
-
-      $lp_subject = 'Neue Anfrage Knieendoprothetik Landing Page';
-      $lp_body = implode("\n", array(
-        'Neue Anfrage über die Landing Page:',
-        '',
-        'Name: ' . $lp_vorname . ' ' . $lp_nachname,
-        'E-Mail: ' . $lp_email,
-        'Telefon: ' . $lp_telefon,
-        '',
-        'Seite: ' . home_url(isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '/'),
-      ));
-      $lp_headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        'Reply-To: ' . $lp_vorname . ' ' . $lp_nachname . ' <' . $lp_email . '>',
-      );
-
-      if (wp_mail($lp_form_recipient, $lp_subject, $lp_body, $lp_headers)) {
-        wp_safe_redirect(add_query_arg('lp_sent', '1', $lp_redirect_base) . '#formular');
-        exit;
-      } else {
-        wp_safe_redirect(add_query_arg('lp_error', '1', $lp_redirect_base) . '#formular');
-        exit;
-      }
-    }
-  }
-}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -637,62 +546,6 @@ if (
       letter-spacing: -0.03em;
     }
 
-    .lp-page .lp-cta-form {
-      display: grid;
-      gap: 18px;
-    }
-
-    .lp-page .lp-form-message {
-      margin: 0 0 18px;
-      padding: 12px 16px;
-      border-radius: var(--radius-control);
-      font-size: 15px;
-      line-height: 1.35;
-      font-weight: 600;
-    }
-
-    .lp-page .lp-form-message.success {
-      background: rgba(106, 150, 165, 0.12);
-      color: #416171;
-    }
-
-    .lp-page .lp-form-message.error {
-      background: rgba(180, 64, 64, 0.1);
-      color: #8a2f2f;
-    }
-
-    .lp-page .lp-form-hidden {
-      position: absolute;
-      left: -9999px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-
-    .lp-page .lp-cta-input {
-      width: 100%;
-      height: 58px;
-      padding: 0 18px;
-      border: 1px solid #e1e1e1;
-      border-radius: var(--radius-control);
-      appearance: none;
-      background: #ffffff;
-      color: #3f3f46;
-      font-size: 16px;
-      line-height: 1.2;
-      font-weight: 400;
-      outline: none;
-    }
-
-    .lp-page .lp-cta-input::placeholder {
-      color: #a7a7ad;
-      opacity: 1;
-    }
-
-    .lp-page .lp-cta-input:focus {
-      border-color: #6A96A5;
-    }
-
     .lp-page .lp-cta-note {
       margin: 0;
       color: #555555;
@@ -705,25 +558,6 @@ if (
       color: #3f3f46;
       font-weight: 700;
       text-decoration: underline;
-    }
-
-    .lp-page .lp-cta-submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 60px;
-      padding: 0 24px;
-      border: 0;
-      border-radius: var(--radius-control);
-      appearance: none;
-      background: #6A96A5;
-      color: #ffffff;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1.2;
-      font-weight: 700;
-      text-align: center;
     }
 
     /* =========================
@@ -1393,35 +1227,7 @@ if (
     <div class="lp-cta-card">
       <h2>Jetzt unverbindliche Beratung anfragen</h2>
 
-      <?php if ($lp_form_message !== '') : ?>
-        <p class="lp-form-message <?php echo esc_attr($lp_form_status); ?>">
-          <?php echo esc_html($lp_form_message); ?>
-        </p>
-      <?php endif; ?>
-
-      <form class="lp-cta-form" action="<?php echo esc_url(get_permalink()); ?>#formular" method="post">
-        <input type="hidden" name="lp_form_action" value="lp_huefte_contact">
-        <input type="hidden" name="lp_form_time" value="<?php echo esc_attr(time()); ?>">
-        <?php wp_nonce_field('lp_huefte_contact', 'lp_form_nonce'); ?>
-
-        <label class="lp-form-hidden" for="lp-website">Website</label>
-        <input id="lp-website" class="lp-form-hidden" type="text" name="website" tabindex="-1" autocomplete="off">
-
-        <input class="lp-cta-input" type="text" name="lp_vorname" placeholder="Vorname" value="<?php echo isset($lp_vorname) && $lp_form_status !== 'success' ? esc_attr($lp_vorname) : ''; ?>">
-        <input class="lp-cta-input" type="text" name="lp_nachname" placeholder="Nachname*" value="<?php echo isset($lp_nachname) && $lp_form_status !== 'success' ? esc_attr($lp_nachname) : ''; ?>" required>
-        <input class="lp-cta-input" type="email" name="lp_email" placeholder="E-Mail Adresse" value="<?php echo isset($lp_email) && $lp_form_status !== 'success' ? esc_attr($lp_email) : ''; ?>">
-        <input class="lp-cta-input" type="tel" name="lp_telefon" placeholder="Telefonnummer*" value="<?php echo isset($lp_telefon) && $lp_form_status !== 'success' ? esc_attr($lp_telefon) : ''; ?>" required pattern="[0-9+\-\s()\/]{6,20}" inputmode="tel">
-
-        <p class="lp-cta-note">
-          Mit dem Absenden stimmen Sie der <a href="/datenschutzerklaerung/">Datenschutzerklärung</a>
-          sowie der <a href="#kontakt">Kontaktaufnahme</a> durch Ortho Faschingbauer zur
-          Terminvereinbarung zu.
-        </p>
-
-        <button class="lp-cta-submit" type="submit">
-          Jetzt unverbindlich Termin anfragen
-        </button>
-      </form>
+      <?php echo do_shortcode('[ws_form id="4"]'); ?>
     </div>
   </section>
 

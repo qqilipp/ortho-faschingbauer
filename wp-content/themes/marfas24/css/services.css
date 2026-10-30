@@ -2274,6 +2274,19 @@ body.home .s_text + .bgwhite + .bgwhite .padding {
   --wsf-field-button-font-weight: 700;
 }
 
+/* Landingpage-Formular: dieselben WS-Form-Variablen wie auf der Kontaktseite
+   und in der Rueckrufbox, damit die drei Formulare gleich aussehen.
+   Seit 30.10.2026, davor war das LP-Formular ein eigenes PHP-Formular. */
+.lp-cta-card [data-wsf-style-id] {
+  --wsf-field-border-radius: var(--radius-control);
+  --wsf-field-border-color: #e1e1e1;
+  --wsf-field-border-color-hover: #e1e1e1;
+  --wsf-field-padding-vertical: 18px;
+  --wsf-field-padding-horizontal: 18px;
+  --wsf-field-button-font-weight: 700;
+}
+
+
 @media (max-width: 600px) {
   .blog-callbackbox {
     padding: 24px 22px;
