@@ -185,6 +185,34 @@ add_action('wp_enqueue_scripts', function () {
 }, 20);
 
 /**
+ * Landingpages Huefte und Knie.
+ *
+ * Die Stile lagen bis zum 30.10.2026 zweimal als Inline-<style> in den beiden
+ * Templates, rund 900 Zeilen je Kopie. Jetzt eine Datei fuer beide Seiten.
+ *
+ * Der Inline-Block stand im Template nach wp_head(), also hinter allem anderen
+ * im head. Prioritaet 100 bildet das nach. Ueberschneidungen mit WS Form oder
+ * Borlabs gibt es zwar keine - das CSS spricht ausschliesslich .lp-Selektoren
+ * an -, aber die Reihenfolge unveraendert zu lassen kostet nichts.
+ */
+add_action('wp_enqueue_scripts', function () {
+
+  if (!is_page_template('page-hueftendoprothese.php') &&
+      !is_page_template('page-lp-knieendoprothese.php')) {
+    return;
+  }
+
+  $path = get_template_directory() . '/css/landingpage.css';
+  wp_enqueue_style(
+    'marfas24-landingpage',
+    get_template_directory_uri() . '/css/landingpage.css',
+    ['marfas24-style'],
+    file_exists($path) ? filemtime($path) : null
+  );
+
+}, 100);
+
+/**
  * Remove Gutenberg CSS on frontend
  */
 function tigris_remove_wp_block_library_css() {
