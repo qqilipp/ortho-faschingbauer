@@ -10,8 +10,9 @@ Template Name: LP Knieendoprothese
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
+  <?php /* noindex steht in Rank Math (Seite 2030 Huefte, 2042 Knie), nicht hier.
+           Hartkodiert gab es zwei widersprechende robots-Angaben: diese und die
+           von Rank Math, das ohne Einstellung index,follow ausgibt. */ ?>
 
   <title><?php wp_title(''); ?></title>
 
